@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Rounded placeholder for book covers in the home list (clipped via clipToOutline) -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="#C1B6A4" />
+    <corners android:radius="8dp" />
+</shape>

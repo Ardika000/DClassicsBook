@@ -2,63 +2,91 @@ package com.example.dclassicsbook.ui.main;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
+import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dclassicsbook.R;
-import com.example.dclassicsbook.data.model.Book;
 import com.example.dclassicsbook.data.repository.BookRepository;
+import com.example.dclassicsbook.data.repository.StoreRepository;
 import com.example.dclassicsbook.ui.detail.BookDetailActivity;
-
-import java.util.List;
+import com.example.dclassicsbook.ui.main.adapter.BookAdapter;
+import com.example.dclassicsbook.ui.main.adapter.StoreAdapter;
+import com.example.dclassicsbook.ui.widget.BottomNavBar;
 
 /**
- * MainActivity — Halaman utama daftar buku klasik.
- * Menampilkan 22 buku klasik dari BookRepository sesuai desain Figma.
+ * Home page — greeting header, search bar, "Our Stores" carousel,
+ * "Timeless Classic Books" list and a reusable bottom navigation bar.
+ * Built to match the Figma design (UX_DClassicalBook).
  */
 public class MainActivity extends AppCompatActivity {
 
-    private LinearLayout booksContainer;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        EdgeToEdge.enable(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        booksContainer = findViewById(R.id.booksContainer);
-
-        List<Book> books = BookRepository.getBooks();
-        populateBooks(books);
+        applyWindowInsets();
+        setUpStores();
+        setUpBooks();
+        setUpBottomNav();
     }
 
-    private void populateBooks(List<Book> books) {
-        LinearLayout booksContainer = findViewById(R.id.booksContainer);
-        booksContainer.removeAllViews();
+    /**
+     * targetSdk 35 forces edge-to-edge, so we pad the scrolling content below
+     * the status bar and the nav bar above the gesture/navigation bar.
+     */
+    private void applyWindowInsets() {
+        View content   = findViewById(R.id.homeContent);
+        View bottomNav = findViewById(R.id.bottomNav);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.rootHome), (v, insets) -> {
+            Insets bars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            content.setPadding(content.getPaddingLeft(), bars.top + dp(24),
+                    content.getPaddingRight(), content.getPaddingBottom());
+            bottomNav.setPadding(bottomNav.getPaddingLeft(), bottomNav.getPaddingTop(),
+                    bottomNav.getPaddingRight(), bars.bottom);
+            return insets;
+        });
+    }
 
-        LayoutInflater inflater = LayoutInflater.from(this);
-        for (Book book : books) {
-            View bookCardView = inflater.inflate(R.layout.item_book_card, booksContainer, false);
+    private void setUpStores() {
+        RecyclerView rvStores = findViewById(R.id.rvStores);
+        rvStores.setLayoutManager(
+                new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        rvStores.setAdapter(new StoreAdapter(StoreRepository.getStores(), store -> {
+            // No Store detail screen yet — hook navigation here when available.
+        }));
+    }
 
-            ImageView imgCardCover = bookCardView.findViewById(R.id.imgCardCover);
-            TextView tvCardTitle   = bookCardView.findViewById(R.id.tvCardTitle);
-            TextView tvCardAuthor  = bookCardView.findViewById(R.id.tvCardAuthor);
+    private void setUpBooks() {
+        RecyclerView rvBooks = findViewById(R.id.rvBooks);
+        rvBooks.setLayoutManager(new LinearLayoutManager(this));
+        rvBooks.setAdapter(new BookAdapter(BookRepository.getBooks(), book -> {
+            Intent intent = new Intent(MainActivity.this, BookDetailActivity.class);
+            intent.putExtra("BOOK_DATA", book);
+            startActivity(intent);
+        }));
+    }
 
-            tvCardTitle.setText(book.getTitle());
-            tvCardAuthor.setText(book.getAuthor());
-            imgCardCover.setImageResource(book.getCoverResId());
+    private void setUpBottomNav() {
+        BottomNavBar bottomNav = findViewById(R.id.bottomNav);
+        bottomNav.setActiveItem(BottomNavBar.HOME);
+        bottomNav.setOnItemSelectedListener(index -> {
+            if (index == BottomNavBar.LOGOUT) {
+                finish();
+            }
+            // BOOKS / STORES screens are not built yet — they stay on Home for now.
+        });
+    }
 
-            bookCardView.setOnClickListener(v -> {
-                Intent intent = new Intent(MainActivity.this, BookDetailActivity.class);
-                intent.putExtra("BOOK_DATA", book);
-                startActivity(intent);
-            });
-
-            booksContainer.addView(bookCardView);
-        }
+    private int dp(int value) {
+        return Math.round(value * getResources().getDisplayMetrics().density);
     }
 }

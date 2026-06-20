@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Placeholder background for store thumbnails.
+    Replace the ImageView src in item_store_card with real store photos
+    (add them to res/drawable and point Store.imageResId to them).
+-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <gradient
+        android:angle="135"
+        android:startColor="#C7BCA8"
+        android:endColor="#A89A82" />
+    <corners android:radius="16dp" />
+</shape>
