@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    android:paddingTop="50dp"
+    android:background="@color/bg_ivory">
+
+    <!-- HEADER: Back Icon  +  "Detail Book" -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:paddingTop="0dp"
+        android:paddingBottom="12dp">
+
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_gravity="start|center_vertical"
+            android:src="@drawable/ic_back"
+            android:scaleType="fitCenter"
+            android:contentDescription="Back"
+            android:clickable="true"
+            android:focusable="true" />
+
+        <TextView
+            android:id="@+id/tvPageTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Detail Book"
+            android:textColor="@color/brown_dark"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/poppins" />
+    </FrameLayout>
+
+    <!-- SCROLLABLE CONTENT -->
+    <ScrollView
+        android:id="@+id/mainScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:id="@+id/scrollContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:animateLayoutChanges="true"
+            android:paddingTop="8dp"
+            android:paddingBottom="40dp">
+
+            <!-- COVER IMAGE -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                android:paddingTop="8dp"
+                android:paddingBottom="20dp">
+
+                <ImageView
+                    android:id="@+id/imgBookCover"
+                    android:layout_width="101dp"
+                    android:layout_height="170dp"
+                    android:scaleType="centerCrop"
+                    android:contentDescription="Book Cover"
+                    android:background="@drawable/bg_book_cover"
+                    tools:background="#C1B6A4" />
+            </LinearLayout>
+
+            <!-- BOOK INFO -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                android:paddingStart="36dp"
+                android:paddingEnd="36dp">
+
+                <TextView
+                    android:id="@+id/tvBookTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textColor="@color/brown_dark"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/poppins"
+                    android:lineSpacingMultiplier="1.2"
+                    tools:text="Pride and Prejudice" />
+
+                <TextView
+                    android:id="@+id/tvBookAuthor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:gravity="center"
+                    android:textColor="@color/brown_accent"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/poppins"
+                    tools:text="Jane Austen" />
+
+                <TextView
+                    android:id="@+id/tvBookYear"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:gravity="center"
+                    android:textColor="@color/brown_accent"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/poppins"
+                    tools:text="1813" />
+
+                <View
+                    android:layout_width="179dp"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="14dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@color/divider_taupe" />
+
+                <TextView
+                    android:id="@+id/tvBookGenres"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textColor="@color/brown_accent"
+                    android:textSize="10sp"
+                    android:fontFamily="@font/poppins"
+                    android:lineSpacingMultiplier="1.4"
+                    tools:text="Romance   |   Drama   |   Social   |   Classic" />
+
+            </LinearLayout>
+
+            <!-- Synopsis -->
+            <TextView
+                android:id="@+id/tvBookSynopsis"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:paddingStart="36dp"
+                android:paddingEnd="36dp"
+                android:textColor="@color/brown_dark"
+                android:textSize="12sp"
+                android:lineSpacingMultiplier="1.5"
+                android:justificationMode="inter_word"
+                android:fontFamily="@font/poppins"
+                tools:text="This is the synopsis..." />
+
+            <!-- Booking Form Container (Tampil jika tombol diklik) -->
+            <LinearLayout
+                android:id="@+id/bookingForm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"
+                android:paddingStart="36dp"
+                android:paddingEnd="36dp"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    style="@style/FormLabelStyle"
+                    android:text="Address"
+                    android:layout_marginBottom="6dp" />
+
+                <EditText
+                    android:id="@+id/etAddress"
+                    style="@style/FormInputStyle"
+                    android:hint="Please Enter Your Address"
+                    android:inputType="textPostalAddress" />
+
+                <TextView
+                    style="@style/FormLabelStyle"
+                    android:text="Phone Number"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="6dp" />
+
+                <EditText
+                    android:id="@+id/etPhoneNumber"
+                    style="@style/FormInputStyle"
+                    android:hint="Please Enter Your Phone Number"
+                    android:inputType="phone" />
+            </LinearLayout>
+
+            <!-- "Add to Cart" BUTTON -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="40dp">
+
+                <TextView
+                    android:id="@+id/btnAddToCart"
+                    android:layout_width="179dp"
+                    android:layout_height="49dp"
+                    android:gravity="center"
+                    android:text="Add to Cart"
+                    android:textColor="@color/brown_dark"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/poppins"
+                    android:background="@drawable/btn_add_to_cart"
+                    android:clickable="true"
+                    android:focusable="true" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

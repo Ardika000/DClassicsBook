@@ -1,9 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+    <!--
+        Theme menggunakan palet Figma:
+          Primary     = #5E4C3E (dark brown)
+          Background  = #F5F5EB (ivory)
+          Surface     = #F5F5EB
+    -->
     <style name="Base.Theme.DClassicsBook" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/brown_dark</item>
+        <item name="colorOnPrimary">@color/bg_ivory</item>
+        <item name="colorPrimaryContainer">@color/beige_warm</item>
+        <item name="colorOnPrimaryContainer">@color/brown_dark</item>
+        <item name="colorSecondary">@color/brown_accent</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="colorSurface">@color/bg_ivory</item>
+        <item name="colorOnSurface">@color/brown_dark</item>
+        <item name="colorError">#C0392B</item>
+        <item name="android:windowBackground">@color/bg_ivory</item>
+        <item name="android:statusBarColor">@color/bg_ivory</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="23">true</item>
+        <item name="android:navigationBarColor">@color/bg_ivory</item>
     </style>
 
     <style name="Theme.DClassicsBook" parent="Base.Theme.DClassicsBook" />
+
+    <!-- ── Reusable Component Styles ──────────────────────────────────────── -->
+    <style name="FormLabelStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/brown_dark</item>
+        <item name="android:textSize">14sp</item>
+        <item name="fontFamily">@font/poppins</item>
+    </style>
+
+    <style name="FormInputStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:textColor">@color/brown_dark</item>
+        <item name="android:textColorHint">#8A7765</item>
+        <item name="android:textSize">13sp</item>
+        <item name="fontFamily">@font/poppins</item>
+        <item name="android:paddingStart">16dp</item>
+        <item name="android:paddingEnd">16dp</item>
+        <item name="android:background">@drawable/bg_rounded_input</item>
+    </style>
+
 </resources>
