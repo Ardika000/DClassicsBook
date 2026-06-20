@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Tombol "Add to Cart" – rounded pill, bg #CDC5B6 (greige) -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <corners android:radius="30dp" />
+    <solid android:color="#CDC5B6" />
+</shape>

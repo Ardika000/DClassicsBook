@@ -1,5 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+    colors.xml
+    Color palette persis dari Figma DClassicsBook (Component Page + Book Detail Page)
+
+    Palette utama:
+      bg_ivory       #F5F5EB  – background halaman (krem/ivory)
+      brown_dark     #5E4C3E  – teks utama, heading, icon, button text
+      brown_accent   #B49D7D  – author, year, genre, secondary text
+      taupe_medium   #C1B6A4  – cover placeholder, menu icon, confirmation bg
+      greige_button  #CDC5B6  – tombol "Add to Cart"
+      beige_warm     #E1DACA  – store box background
+      brown_input    #B49D7D  – input field background
+      menu_bar       #5E4C3E  – bottom nav bar background
+      ivory_active   #F5F5EB  – active tab text
+      brown_text_mid #5C4A3C  – inactive tab text
+-->
 <resources>
-    <color name="black">#FF000000</color>
+    <!-- Base -->
     <color name="white">#FFFFFFFF</color>
+    <color name="black">#FF000000</color>
+
+    <!-- ── Figma Color Palette ──────────────────────────────────────────── -->
+
+    <!-- Background: halaman / ivory cream -->
+    <color name="bg_ivory">#F5F5EB</color>
+
+    <!-- Primary dark brown: teks, heading, icon, button text -->
+    <color name="brown_dark">#5E4C3E</color>
+    <!-- Variant sedikit lebih gelap untuk beberapa text -->
+    <color name="brown_darkest">#5C4A3C</color>
+
+    <!-- Accent: author, year, genre, secondary text -->
+    <color name="brown_accent">#B49D7D</color>
+
+    <!-- Tombol Add to Cart: background abu-greige -->
+    <color name="btn_add_to_cart">#CDC5B6</color>
+
+    <!-- Cover placeholder & icon non-aktif -->
+    <color name="taupe_medium">#C1B6A4</color>
+
+    <!-- Beige hangat: kotak store, dll -->
+    <color name="beige_warm">#E1DACA</color>
+
+    <!-- Input field background (address, phone) -->
+    <color name="input_brown">#B49D7D</color>
+
+    <!-- Divider / line -->
+    <color name="divider_taupe">#C1B6A4</color>
+
+    <!-- Confirmation popup background -->
+    <color name="confirmation_bg">#C1B6A4</color>
+
+    <!-- Menu bar -->
+    <color name="menu_bar_bg">#5E4C3E</color>
+    <color name="menu_icon_default">#C1B6A4</color>
+    <color name="menu_icon_active">#F5F5EB</color>
 </resources>
