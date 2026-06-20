@@ -16,6 +16,7 @@
         android:layout_height="104dp"
         android:scaleType="centerCrop"
         android:background="@drawable/bg_store_image"
+        android:clipToOutline="true"
         android:contentDescription="@string/cd_store_image"
         tools:src="@drawable/bg_store_image" />
 
