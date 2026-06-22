@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Children of the reusable BottomNavBar compound view.
+    Inflated with <merge> so the items attach directly to the BottomNavBar
+    (a horizontal LinearLayout). Order MUST match the index constants in
+    BottomNavBar: HOME, BOOKS, STORES, LOGOUT.
+-->
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Home -->
+    <LinearLayout
+        android:id="@+id/navHome"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:clickable="true"
+        android:focusable="true">
+
+        <ImageView
+            android:id="@+id/navHomeIcon"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:src="@drawable/ic_home"
+            android:contentDescription="@string/nav_home" />
+
+        <TextView
+            android:id="@+id/navHomeLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/nav_home"
+            android:textSize="11sp"
+            android:fontFamily="@font/poppins" />
+    </LinearLayout>
+
+    <!-- Books -->
+    <LinearLayout
+        android:id="@+id/navBooks"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:clickable="true"
+        android:focusable="true">
+
+        <ImageView
+            android:id="@+id/navBooksIcon"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:src="@drawable/ic_book"
+            android:contentDescription="@string/nav_books" />
+
+        <TextView
+            android:id="@+id/navBooksLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/nav_books"
+            android:textSize="11sp"
+            android:fontFamily="@font/poppins" />
+    </LinearLayout>
+
+    <!-- Stores -->
+    <LinearLayout
+        android:id="@+id/navStores"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:clickable="true"
+        android:focusable="true">
+
+        <ImageView
+            android:id="@+id/navStoresIcon"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:src="@drawable/ic_store"
+            android:contentDescription="@string/nav_stores" />
+
+        <TextView
+            android:id="@+id/navStoresLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/nav_stores"
+            android:textSize="11sp"
+            android:fontFamily="@font/poppins" />
+    </LinearLayout>
+
+    <!-- Log Out -->
+    <LinearLayout
+        android:id="@+id/navLogout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:clickable="true"
+        android:focusable="true">
+
+        <ImageView
+            android:id="@+id/navLogoutIcon"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:src="@drawable/ic_logout"
+            android:contentDescription="@string/nav_logout" />
+
+        <TextView
+            android:id="@+id/navLogoutLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/nav_logout"
+            android:textSize="11sp"
+            android:fontFamily="@font/poppins" />
+    </LinearLayout>
+</merge>

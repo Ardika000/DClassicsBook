@@ -55,4 +55,10 @@
     <color name="menu_bar_bg">#5E4C3E</color>
     <color name="menu_icon_default">#C1B6A4</color>
     <color name="menu_icon_active">#F5F5EB</color>
+
+    <!-- ── Homepage ─────────────────────────────────────────────────────── -->
+    <!-- Search bar background (light warm beige) -->
+    <color name="search_bg">#EAE5D8</color>
+    <!-- Book list card background (warm greige) -->
+    <color name="card_book_bg">#E6E0D4</color>
 </resources>
