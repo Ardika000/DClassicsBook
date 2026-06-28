@@ -14,6 +14,11 @@
     <string name="cd_prev">Previous store</string>
     <string name="cd_next">Next store</string>
 
+    <!-- Stores page -->
+    <string name="store_brand">D\'Classic Books</string>
+    <string name="store_search_hint">Search for Nearby Stores…</string>
+    <string name="cd_pin">Location</string>
+
     <!-- Books page -->
     <string name="books_favourite">All-Time Favourite</string>
     <string name="books_see_all">See All ›</string>

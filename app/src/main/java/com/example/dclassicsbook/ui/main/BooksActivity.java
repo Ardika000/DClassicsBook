@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -114,7 +113,8 @@ public class BooksActivity extends AppCompatActivity {
                     finish();
                     break;
                 case BottomNavBar.STORES:
-                    Toast.makeText(this, "Stores page is coming soon", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(this, StoresActivity.class));
+                    finish();
                     break;
                 default:
                     // BOOKS — already here.

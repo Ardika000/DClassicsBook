@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.dclassicsbook.R;
 import com.example.dclassicsbook.data.model.Book;
+import com.example.dclassicsbook.ui.main.BooksActivity;
 import com.example.dclassicsbook.ui.main.MainActivity;
 
 public class BookDetailActivity extends AppCompatActivity {
@@ -149,7 +150,7 @@ public class BookDetailActivity extends AppCompatActivity {
                 etPhoneNumber.clearFocus();
 
                 // Redirect to item/main page
-                Intent intent = new Intent(BookDetailActivity.this, MainActivity.class);
+                Intent intent = new Intent(BookDetailActivity.this, BooksActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);
                 finish();

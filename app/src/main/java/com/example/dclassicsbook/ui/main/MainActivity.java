@@ -7,7 +7,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -172,7 +171,8 @@ public class MainActivity extends AppCompatActivity {
                     finish();
                     break;
                 case BottomNavBar.STORES:
-                    Toast.makeText(this, "Stores page is coming soon", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(this, StoresActivity.class));
+                    finish();
                     break;
                 default:
                     // HOME — already here.
