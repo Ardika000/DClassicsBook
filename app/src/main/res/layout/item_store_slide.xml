@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- A single store thumbnail in the "Our Stores" horizontal carousel -->
+<!-- A single full-width page in the "Our Stores" ViewPager2 carousel -->
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="152dp"
-    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_marginEnd="14dp"
     android:clickable="true"
     android:focusable="true">
 
     <ImageView
         android:id="@+id/imgStore"
         android:layout_width="match_parent"
-        android:layout_height="104dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:scaleType="centerCrop"
         android:background="@drawable/bg_store_image"
         android:clipToOutline="true"
@@ -24,10 +24,11 @@
         android:id="@+id/tvStoreName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="10dp"
         android:gravity="center"
         android:textColor="@color/brown_dark"
-        android:textSize="13sp"
+        android:textSize="15sp"
+        android:textStyle="bold"
         android:fontFamily="@font/poppins"
         android:maxLines="1"
         android:ellipsize="end"

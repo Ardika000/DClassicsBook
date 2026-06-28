@@ -15,7 +15,8 @@ import com.example.dclassicsbook.data.model.Store;
 import java.util.List;
 
 /**
- * Adapter for the horizontal "Our Stores" carousel on the home page.
+ * Adapter backing the "Our Stores" ViewPager2 carousel on the home page.
+ * Each item is a full-width {@code item_store_slide}.
  */
 public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.StoreViewHolder> {
 
@@ -36,7 +37,7 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.StoreViewHol
     @Override
     public StoreViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_store_card, parent, false);
+                .inflate(R.layout.item_store_slide, parent, false);
         return new StoreViewHolder(view);
     }
 

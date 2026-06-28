@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Login page (spec module 2). Background pattern is a placeholder (solid ivory) —
+    drop a books-doodle PNG into res/drawable and set it as the root background
+    to match the Figma exactly.
+-->
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootLogin"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_ivory"
+    android:fillViewport="true"
+    android:scrollbars="none"
+    tools:context=".ui.auth.LoginActivity">
+
+    <LinearLayout
+        android:id="@+id/loginContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:paddingTop="40dp"
+        android:paddingBottom="32dp">
+
+        <!-- ── Card ───────────────────────────────────────────────────────── -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/bg_auth_card"
+            android:padding="24dp"
+            android:layout_marginTop="40dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/login_title"
+                android:textColor="@color/brown_dark"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/poppins" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="2dp"
+                android:text="@string/auth_subtitle"
+                android:textColor="@color/brown_accent"
+                android:textSize="12sp"
+                android:fontFamily="@font/poppins" />
+
+            <!-- Username -->
+            <TextView
+                style="@style/AuthLabel"
+                android:layout_marginTop="24dp"
+                android:text="@string/auth_label_username" />
+
+            <LinearLayout style="@style/AuthInputContainer">
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:src="@drawable/ic_profile"
+                    android:contentDescription="@string/auth_label_username" />
+                <EditText
+                    android:id="@+id/etUsername"
+                    style="@style/AuthEditText"
+                    android:hint="@string/auth_hint_username"
+                    android:inputType="text" />
+            </LinearLayout>
+
+            <!-- Password -->
+            <TextView
+                style="@style/AuthLabel"
+                android:layout_marginTop="18dp"
+                android:text="@string/auth_label_password" />
+
+            <LinearLayout style="@style/AuthInputContainer">
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:src="@drawable/ic_lock"
+                    android:contentDescription="@string/auth_label_password" />
+                <EditText
+                    android:id="@+id/etPassword"
+                    style="@style/AuthEditText"
+                    android:hint="@string/auth_hint_password"
+                    android:inputType="textPassword" />
+                <ImageView
+                    android:id="@+id/ivTogglePassword"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_eye_off"
+                    android:padding="1dp"
+                    android:contentDescription="@string/cd_toggle_password"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:clickable="true"
+                    android:focusable="true" />
+            </LinearLayout>
+
+            <!-- Remember me + Forgot password -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="12dp">
+
+                <CheckBox
+                    android:id="@+id/cbRemember"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/login_remember"
+                    android:textColor="@color/brown_accent"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/poppins" />
+
+                <TextView
+                    android:id="@+id/tvForgot"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/login_forgot"
+                    android:textColor="@color/brown_dark"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/poppins"
+                    android:padding="4dp"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true" />
+            </LinearLayout>
+
+            <!-- Log In button -->
+            <TextView
+                android:id="@+id/btnLogin"
+                style="@style/AuthButton"
+                android:layout_marginTop="20dp"
+                android:text="@string/btn_login" />
+
+            <!-- Footer link -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/login_no_account"
+                    android:textColor="@color/brown_accent"
+                    android:textSize="12sp"
+                    android:layout_marginRight="5dp"
+                    android:fontFamily="@font/poppins" />
+
+                <TextView
+                    android:id="@+id/tvGoRegister"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/login_register_link"
+                    android:textColor="@color/brown_dark"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/poppins"
+                    android:clickable="true"
+                    android:focusable="true" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- ── Logo badge ─────────────────────────────────────────────────── -->
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="44dp"
+            android:src="@drawable/logo_dclassic"
+            android:scaleType="fitCenter"
+            android:contentDescription="@string/cd_logo" />
+
+    </LinearLayout>
+</ScrollView>

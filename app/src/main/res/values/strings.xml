@@ -10,7 +10,9 @@
     <!-- Home sections -->
     <string name="home_section_stores">Our Stores</string>
     <string name="home_view_all">View All ›</string>
-    <string name="home_section_books">Timeless Classic Books</string>
+    <string name="home_section_books">Featured Books</string>
+    <string name="cd_prev">Previous store</string>
+    <string name="cd_next">Next store</string>
 
     <!-- Bottom navigation -->
     <string name="nav_home">Home</string>
@@ -23,4 +25,46 @@
     <string name="cd_search">Search</string>
     <string name="cd_book_cover">Book cover</string>
     <string name="cd_store_image">Store photo</string>
+    <string name="cd_logo">D\'Classic Book logo</string>
+    <string name="cd_toggle_password">Show or hide password</string>
+
+    <!-- ── Auth (Login / Register) ──────────────────────────────────────── -->
+    <string name="auth_subtitle">Time to read your Book!</string>
+    <string name="login_title">Log In</string>
+    <string name="register_title">Register</string>
+
+    <string name="auth_label_name">Name</string>
+    <string name="auth_label_username">Username</string>
+    <string name="auth_label_email">Email</string>
+    <string name="auth_label_password">Password</string>
+    <string name="auth_label_confirm">Confirm Password</string>
+
+    <string name="auth_hint_name">Enter Your Full Name</string>
+    <string name="auth_hint_username">Enter Your Username</string>
+    <string name="auth_hint_email">example@gmail.com</string>
+    <string name="auth_hint_password">Enter Your Password</string>
+    <string name="auth_hint_confirm">Re-enter Your Password</string>
+
+    <string name="btn_login">Log In</string>
+    <string name="btn_signup">Sign Up</string>
+    <string name="login_remember">Remember me</string>
+    <string name="login_forgot">Forgot Password?</string>
+    <string name="login_no_account">Don\'t have an account? </string>
+    <string name="login_register_link">Register here</string>
+    <string name="register_have_account">Already have account? </string>
+    <string name="register_signin_link">Sign In here</string>
+
+    <!-- Validation messages -->
+    <string name="err_username_required">Username must be filled</string>
+    <string name="err_name_required">Name must be filled</string>
+    <string name="err_email_required">Email must be filled</string>
+    <string name="err_email_invalid">Enter a valid email</string>
+    <string name="err_password_required">Password must be filled</string>
+    <string name="err_password_alnum">Password must contain a mix of uppercase letters, lowercase letters, and numbers</string>
+    <string name="err_confirm_required">Please confirm your password</string>
+    <string name="err_password_mismatch">Passwords do not match</string>
+    <string name="err_username_taken">Username is already registered</string>
+    <string name="err_username_not_found">Username is not registered yet</string>
+    <string name="err_password_incorrect">Incorrect password</string>
+    <string name="register_success">Account created. Please sign in.</string>
 </resources>

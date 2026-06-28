@@ -17,11 +17,12 @@ public class Book implements Serializable {
     private List<String> genres;  // list of genres
     private String description;   // sinopsis buku
     private int    coverResId;    // R.drawable.xxx resource ID cover buku
+    private Boolean isFiction;
 
     // ─── Constructor ──────────────────────────────────────────────────────────
 
     public Book(int id, String title, String author, String year,
-                List<String> genres, String description, int coverResId) {
+                List<String> genres, String description, int coverResId, boolean isFiction) {
         this.id          = id;
         this.title       = title;
         this.author      = author;
@@ -29,6 +30,7 @@ public class Book implements Serializable {
         this.genres      = genres;
         this.description = description;
         this.coverResId  = coverResId;
+        this.isFiction = isFiction;
     }
 
     // ─── Getters ──────────────────────────────────────────────────────────────
@@ -40,6 +42,7 @@ public class Book implements Serializable {
     public List<String> getGenres() { return genres; }
     public String getDescription()  { return description; }
     public int    getCoverResId()   { return coverResId; }
+    public  boolean getBookType() {return isFiction;}
 
     // ─── Setters ──────────────────────────────────────────────────────────────
 
@@ -50,4 +53,6 @@ public class Book implements Serializable {
     public void setGenres(List<String> genres)    { this.genres = genres; }
     public void setDescription(String description){ this.description = description; }
     public void setCoverResId(int resId)          { this.coverResId = resId; }
+
+    public void setBookType(boolean isFiction) { this.isFiction = isFiction; }
 }
