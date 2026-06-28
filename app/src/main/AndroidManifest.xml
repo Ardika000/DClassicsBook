@@ -30,6 +30,9 @@
             android:name=".ui.main.MainActivity"
             android:exported="false" />
         <activity
+            android:name=".ui.main.BooksActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.detail.BookDetailActivity"
             android:windowSoftInputMode="adjustResize" />
     </application>

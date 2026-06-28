@@ -21,6 +21,24 @@ public class BookRepository {
         return all.subList(0, Math.min(FEATURED_COUNT, all.size()));
     }
 
+    /** All fiction titles (isFiction == true). */
+    public static List<Book> getFictionBooks() {
+        List<Book> result = new ArrayList<>();
+        for (Book b : getBooks()) {
+            if (b.getBookType()) result.add(b);
+        }
+        return result;
+    }
+
+    /** All non-fiction titles (isFiction == false). */
+    public static List<Book> getNonFictionBooks() {
+        List<Book> result = new ArrayList<>();
+        for (Book b : getBooks()) {
+            if (!b.getBookType()) result.add(b);
+        }
+        return result;
+    }
+
     public static List<Book> getBooks() {
         List<Book> list = new ArrayList<>();
 

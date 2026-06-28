@@ -7,6 +7,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -159,13 +160,24 @@ public class MainActivity extends AppCompatActivity {
         BottomNavBar bottomNav = findViewById(R.id.bottomNav);
         bottomNav.setActiveItem(BottomNavBar.HOME);
         bottomNav.setOnItemSelectedListener(index -> {
-            if (index == BottomNavBar.LOGOUT) {
-                Intent intent = new Intent(this, LoginActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
-                finish();
+            switch (index) {
+                case BottomNavBar.BOOKS:
+                    startActivity(new Intent(this, BooksActivity.class));
+                    finish();
+                    break;
+                case BottomNavBar.LOGOUT:
+                    Intent intent = new Intent(this, LoginActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                    finish();
+                    break;
+                case BottomNavBar.STORES:
+                    Toast.makeText(this, "Stores page is coming soon", Toast.LENGTH_SHORT).show();
+                    break;
+                default:
+                    // HOME — already here.
+                    break;
             }
-            // BOOKS / STORES screens are not built yet — they stay on Home for now.
         });
     }
 

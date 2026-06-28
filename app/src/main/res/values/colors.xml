@@ -66,4 +66,7 @@
     <color name="auth_card_bg">#D9D1C2</color>
     <color name="auth_input_bg">#EDE8DC</color>
     <color name="brown_pressed">#4A3B2F</color>
+
+    <!-- Books page tab control -->
+    <color name="seg_track_bg">#CFC6B6</color>
 </resources>
