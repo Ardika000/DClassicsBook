@@ -18,10 +18,6 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.dclassicsbook.R;
 import com.example.dclassicsbook.data.session.CredentialStore;
 
-/**
- * Register page. Validates name / email / password / confirmation, then returns
- * to the Login page so the user can sign in.
- */
 public class RegisterActivity extends AppCompatActivity {
 
     private EditText etUsername;
@@ -103,14 +99,12 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
-        // Save the credentials so the user can now log in with them.
         CredentialStore.getInstance().register(username, password);
         Toast.makeText(this, R.string.register_success, Toast.LENGTH_SHORT).show();
         goToLogin();
     }
 
     private void goToLogin() {
-        // LoginActivity is the task root, so just finishing returns there.
         finish();
     }
 

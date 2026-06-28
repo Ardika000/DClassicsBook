@@ -6,11 +6,6 @@ import com.example.dclassicsbook.data.model.Store;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * In-memory source of the bookstores shown in the home "Our Stores" carousel
- * and the Stores page list. All branches share the "D'Classic Books" brand;
- * each has its own name, address and photo.
- */
 public class StoreRepository {
 
     public static List<Store> getStores() {

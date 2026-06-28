@@ -14,19 +14,11 @@ import com.example.dclassicsbook.data.model.Book;
 
 import java.util.List;
 
-/**
- * Adapter for the vertical book cards on the Books page. Used twice:
- * <ul>
- *   <li>horizontal "All-Time Favourite" row — pass a fixed item width;</li>
- *   <li>"Find Yours" grid — pass {@code fixedWidthDp = 0} so cells fill the column.</li>
- * </ul>
- * Reuses {@link BookAdapter.OnBookClickListener} for clicks.
- */
 public class BookCardAdapter extends RecyclerView.Adapter<BookCardAdapter.VH> {
 
     private final List<Book> books;
     private final BookAdapter.OnBookClickListener clickListener;
-    private final int fixedWidthDp; // 0 = match_parent (grid)
+    private final int fixedWidthDp;
 
     public BookCardAdapter(List<Book> books, BookAdapter.OnBookClickListener clickListener,
                            int fixedWidthDp) {

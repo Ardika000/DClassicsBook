@@ -19,7 +19,6 @@ import com.example.dclassicsbook.R;
 import com.example.dclassicsbook.data.model.Book;
 import com.example.dclassicsbook.data.repository.BookRepository;
 import com.example.dclassicsbook.ui.detail.BookDetailActivity;
-import com.example.dclassicsbook.ui.main.adapter.BookAdapter;
 import com.example.dclassicsbook.ui.main.adapter.BookCardAdapter;
 import com.example.dclassicsbook.ui.auth.LoginActivity;
 import com.example.dclassicsbook.ui.widget.BottomNavBar;
@@ -27,10 +26,6 @@ import com.example.dclassicsbook.ui.widget.BottomNavBar;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Books page (spec module 4). A Fiction / Non-Fiction tab control switches the
- * "All-Time Favourite" row and the grid repeater between the two categories.
- */
 public class BooksActivity extends AppCompatActivity {
 
     private static final int FAVOURITE_WIDTH_DP = 116;
@@ -62,7 +57,7 @@ public class BooksActivity extends AppCompatActivity {
         tabNonFiction.setOnClickListener(v -> selectTab(false));
 
         setUpBottomNav();
-        selectTab(true); // Fiction by default
+        selectTab(true);
     }
 
     private void selectTab(boolean fiction) {
@@ -117,7 +112,6 @@ public class BooksActivity extends AppCompatActivity {
                     finish();
                     break;
                 default:
-                    // BOOKS — already here.
                     break;
             }
         });

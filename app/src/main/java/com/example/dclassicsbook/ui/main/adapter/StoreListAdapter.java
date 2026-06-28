@@ -14,13 +14,8 @@ import com.example.dclassicsbook.data.model.Store;
 
 import java.util.List;
 
-/**
- * Adapter for the vertical store list on the Stores page (spec module 6).
- * Each row shows the store photo, brand, branch name and address.
- */
 public class StoreListAdapter extends RecyclerView.Adapter<StoreListAdapter.VH> {
 
-    /** Click callback so the hosting Activity decides what happens on tap. */
     public interface OnStoreClickListener {
         void onStoreClick(Store store);
     }

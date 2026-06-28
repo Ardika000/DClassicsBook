@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-    Login page (spec module 2). Background pattern is a placeholder (solid ivory) —
-    drop a books-doodle PNG into res/drawable and set it as the root background
-    to match the Figma exactly.
--->
+<!-- Login page (spec module 2). -->
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/rootLogin"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_ivory"
+    android:background="@drawable/background_authentication"
     android:fillViewport="true"
     android:scrollbars="none"
     tools:context=".ui.auth.LoginActivity">

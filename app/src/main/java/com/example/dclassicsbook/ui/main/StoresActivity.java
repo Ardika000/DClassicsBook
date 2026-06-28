@@ -18,10 +18,6 @@ import com.example.dclassicsbook.ui.auth.LoginActivity;
 import com.example.dclassicsbook.ui.main.adapter.StoreListAdapter;
 import com.example.dclassicsbook.ui.widget.BottomNavBar;
 
-/**
- * Stores page (spec module 6). Shows the list of bookstores in a repeater and
- * the reusable bottom navigation (Stores active).
- */
 public class StoresActivity extends AppCompatActivity {
 
     @Override
@@ -38,9 +34,7 @@ public class StoresActivity extends AppCompatActivity {
     private void setUpStores() {
         RecyclerView rvStores = findViewById(R.id.rvStores);
         rvStores.setLayoutManager(new LinearLayoutManager(this));
-        rvStores.setAdapter(new StoreListAdapter(StoreRepository.getStores(), store -> {
-            // No store-detail screen in scope — hook navigation here when available.
-        }));
+        rvStores.setAdapter(new StoreListAdapter(StoreRepository.getStores(), store -> { }));
     }
 
     private void setUpBottomNav() {
@@ -63,7 +57,6 @@ public class StoresActivity extends AppCompatActivity {
                     finish();
                     break;
                 default:
-                    // STORES — already here.
                     break;
             }
         });

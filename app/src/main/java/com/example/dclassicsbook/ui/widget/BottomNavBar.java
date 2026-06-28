@@ -13,20 +13,6 @@ import androidx.core.content.ContextCompat;
 
 import com.example.dclassicsbook.R;
 
-/**
- * Reusable bottom navigation bar matching the DClassicsBook Figma design
- * (dark-brown bar, ivory highlight on the active item).
- *
- * <p>Drop it into any screen's layout:
- * <pre>
- *   &lt;com.example.dclassicsbook.ui.widget.BottomNavBar
- *       android:id="@+id/bottomNav"
- *       android:layout_width="match_parent"
- *       android:layout_height="wrap_content" /&gt;
- * </pre>
- * then call {@link #setActiveItem(int)} for the current screen and
- * {@link #setOnItemSelectedListener(OnItemSelectedListener)} to react to taps.
- */
 public class BottomNavBar extends LinearLayout {
 
     public static final int HOME   = 0;
@@ -34,7 +20,6 @@ public class BottomNavBar extends LinearLayout {
     public static final int STORES = 2;
     public static final int LOGOUT = 3;
 
-    /** Callback fired when a navigation item is tapped. */
     public interface OnItemSelectedListener {
         void onItemSelected(int index);
     }
@@ -80,7 +65,6 @@ public class BottomNavBar extends LinearLayout {
         icons[index]  = findViewById(iconId);
         labels[index] = findViewById(labelId);
         items[index].setOnClickListener(v -> {
-            // Logout is a transient action, not a destination — don't latch it active.
             if (index != LOGOUT) {
                 setActiveItem(index);
             }
@@ -90,7 +74,6 @@ public class BottomNavBar extends LinearLayout {
         });
     }
 
-    /** Highlights the given item (HOME / BOOKS / STORES / LOGOUT). */
     public void setActiveItem(int index) {
         activeIndex = index;
         int active   = ContextCompat.getColor(getContext(), R.color.menu_icon_active);

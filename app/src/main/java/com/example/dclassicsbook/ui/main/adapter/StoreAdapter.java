@@ -14,13 +14,8 @@ import com.example.dclassicsbook.data.model.Store;
 
 import java.util.List;
 
-/**
- * Adapter backing the "Our Stores" ViewPager2 carousel on the home page.
- * Each item is a full-width {@code item_store_slide}.
- */
 public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.StoreViewHolder> {
 
-    /** Click callback so the hosting Activity decides where to navigate. */
     public interface OnStoreClickListener {
         void onStoreClick(Store store);
     }

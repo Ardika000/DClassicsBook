@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-    Register page. Background pattern is a placeholder (solid ivory) — drop a
-    books-doodle PNG into res/drawable and set it as the root background to
-    match the Figma exactly.
--->
+<!-- Register page. -->
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/rootRegister"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_ivory"
+    android:background="@drawable/background_authentication"
     android:fillViewport="true"
     android:scrollbars="none"
     tools:context=".ui.auth.RegisterActivity">

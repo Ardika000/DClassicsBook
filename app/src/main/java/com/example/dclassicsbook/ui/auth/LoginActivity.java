@@ -6,7 +6,6 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -20,10 +19,6 @@ import com.example.dclassicsbook.data.session.CredentialStore;
 import com.example.dclassicsbook.data.session.UserSession;
 import com.example.dclassicsbook.ui.main.MainActivity;
 
-/**
- * Login page (spec module 2). Validates the form, stores the username into the
- * global {@link UserSession} and redirects to the Home page on success.
- */
 public class LoginActivity extends AppCompatActivity {
 
     private EditText etUsername;
@@ -56,38 +51,32 @@ public class LoginActivity extends AppCompatActivity {
         String username = etUsername.getText().toString().trim();
         String password = etPassword.getText().toString();
 
-        // Username must be filled.
         if (TextUtils.isEmpty(username)) {
             etUsername.setError(getString(R.string.err_username_required));
             etUsername.requestFocus();
             return;
         }
-        // Password must be filled.
         if (TextUtils.isEmpty(password)) {
             etPassword.setError(getString(R.string.err_password_required));
             etPassword.requestFocus();
             return;
         }
-        // Password must be alphanumeric (letters AND digits).
         if (!AuthUi.isAlphanumeric(password)) {
             etPassword.setError(getString(R.string.err_password_alnum));
             etPassword.requestFocus();
             return;
         }
-        // Username must belong to a registered account.
         if (!CredentialStore.getInstance().exists(username)) {
             etUsername.setError(getString(R.string.err_username_not_found));
             etUsername.requestFocus();
             return;
         }
-        // Password must match the one used at registration.
         if (!CredentialStore.getInstance().isValid(username, password)) {
             etPassword.setError(getString(R.string.err_password_incorrect));
             etPassword.requestFocus();
             return;
         }
 
-        // Success: store the username globally, then go Home.
         UserSession.getInstance().setUsername(username);
         Intent intent = new Intent(this, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

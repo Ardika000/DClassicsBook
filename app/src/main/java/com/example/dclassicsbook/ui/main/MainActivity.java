@@ -9,7 +9,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -21,6 +20,7 @@ import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.dclassicsbook.R;
+import com.example.dclassicsbook.data.model.Store;
 import com.example.dclassicsbook.data.repository.BookRepository;
 import com.example.dclassicsbook.data.repository.StoreRepository;
 import com.example.dclassicsbook.data.session.UserSession;
@@ -32,10 +32,6 @@ import com.example.dclassicsbook.ui.widget.BottomNavBar;
 
 import java.util.List;
 
-/**
- * Home page (Figma: UX_DClassicalBook) — greeting, search bar, animated store
- * carousel, "Featured Books" list and a reusable bottom navigation bar.
- */
 public class MainActivity extends AppCompatActivity {
 
     private ImageView[] dots = new ImageView[0];
@@ -53,10 +49,6 @@ public class MainActivity extends AppCompatActivity {
         setUpBottomNav();
     }
 
-    /**
-     * targetSdk 35 forces edge-to-edge, so we pad the scrolling content below
-     * the status bar and the nav bar above the gesture/navigation bar.
-     */
     private void applyWindowInsets() {
         View content   = findViewById(R.id.homeContent);
         View bottomNav = findViewById(R.id.bottomNav);
@@ -70,22 +62,18 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    /** "Hello, [Username]" — username comes from the global session. */
     private void setUpGreeting() {
         TextView tvUserName = findViewById(R.id.tvUserName);
         tvUserName.setText(UserSession.getInstance().getUsername() + "!");
     }
 
     private void setUpStoreCarousel() {
-        List<com.example.dclassicsbook.data.model.Store> stores = StoreRepository.getStores();
+        List<Store> stores = StoreRepository.getStores();
         final int count = stores.size();
 
         ViewPager2 pager = findViewById(R.id.vpStores);
-        pager.setAdapter(new StoreAdapter(stores, store -> {
-            // No Store detail screen yet — hook navigation here when available.
-        }));
+        pager.setAdapter(new StoreAdapter(stores, store -> { }));
 
-        // Slide + scale + fade animation on every page change.
         CompositePageTransformer transformer = new CompositePageTransformer();
         transformer.addTransformer(new MarginPageTransformer(dp(12)));
         transformer.addTransformer((page, position) -> {
@@ -109,11 +97,16 @@ public class MainActivity extends AppCompatActivity {
         ImageButton btnNext = findViewById(R.id.btnStoreNext);
         btnPrev.setOnClickListener(v -> {
             int current = pager.getCurrentItem();
-            if (current > 0) pager.setCurrentItem(current - 1, true); // true = animate
+            if (current > 0) pager.setCurrentItem(current - 1, true);
         });
         btnNext.setOnClickListener(v -> {
             int current = pager.getCurrentItem();
             if (current < count - 1) pager.setCurrentItem(current + 1, true);
+        });
+
+        findViewById(R.id.tvViewAllStores).setOnClickListener(v -> {
+            startActivity(new Intent(this, StoresActivity.class));
+            finish();
         });
     }
 
@@ -132,7 +125,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    /** Highlights the active dot and dims the arrow that can't move further. */
     private void updateControls(int position, int count) {
         for (int i = 0; i < dots.length; i++) {
             dots[i].setImageResource(i == position ? R.drawable.dot_active : R.drawable.dot_inactive);
@@ -175,7 +167,6 @@ public class MainActivity extends AppCompatActivity {
                     finish();
                     break;
                 default:
-                    // HOME — already here.
                     break;
             }
         });

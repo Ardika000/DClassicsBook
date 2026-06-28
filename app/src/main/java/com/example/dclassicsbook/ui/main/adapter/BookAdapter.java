@@ -15,12 +15,8 @@ import com.example.dclassicsbook.data.model.Book;
 
 import java.util.List;
 
-/**
- * Adapter for the vertical "Timeless Classic Books" list on the home page.
- */
 public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder> {
 
-    /** Click callback so the hosting Activity decides where to navigate. */
     public interface OnBookClickListener {
         void onBookClick(Book book);
     }
