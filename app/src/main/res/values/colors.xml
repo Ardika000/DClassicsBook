@@ -61,4 +61,8 @@
     <color name="search_bg">#EAE5D8</color>
     <!-- Book list card background (warm greige) -->
     <color name="card_book_bg">#E6E0D4</color>
+    <!-- Primary button, pressed -->
+    <color name="brown_pressed">#4A3B2F</color>
+    <!-- Error stroke -->
+    <color name="error_red">#CC4949</color>
 </resources>
