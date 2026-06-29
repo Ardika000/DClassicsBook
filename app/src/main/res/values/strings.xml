@@ -23,4 +23,33 @@
     <string name="cd_search">Search</string>
     <string name="cd_book_cover">Book cover</string>
     <string name="cd_store_image">Store photo</string>
+
+    <!-- ── Authentication ─────────────────────────────────────────────────── -->
+    <string name="auth_tagline">Your timeless classics library</string>
+
+    <!-- Register page -->
+    <string name="register_title">Register</string>
+    <string name="register_subtitle">Welcome to DClassic Books!</string>
+    <string name="register_button">Register</string>
+    <string name="register_have_account">Already have an account? <u>Sign in here</u></string>
+    <string name="register_label_name">Name</string>
+    <string name="register_hint_name">Enter Your Full Name</string>
+    <string name="register_label_confirm_password">Confirm Password</string>
+    <string name="register_hint_confirm_password">Confirm password</string>
+
+    <!-- Login page -->
+    <string name="login_title">Log In</string>
+    <string name="login_message">Time to read your Book!</string>
+    <string name="login_subtitle">Sign in to continue.</string>
+    <string name="login_button">Log In</string>
+    <string name="login_no_account">Don\'t have an account? <u>Register here</u></string>
+    <string name="login_forgot_password"><u>Forgot Password?</u></string>
+
+    <!-- Shared auth fields -->
+    <string name="auth_label_email">Email</string>
+    <string name="auth_hint_email">example@email.com</string>
+    <string name="auth_label_password">Password</string>
+    <string name="auth_hint_password">Input password</string>
+    <string name="auth_remember_me">Remember me</string>
+    <string name="auth_toggle_password">Show or hide password</string>
 </resources>

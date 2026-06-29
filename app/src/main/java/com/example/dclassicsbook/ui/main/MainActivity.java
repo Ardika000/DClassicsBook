@@ -3,6 +3,7 @@ package com.example.dclassicsbook.ui.main;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,8 +14,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dclassicsbook.R;
+import com.example.dclassicsbook.data.model.User;
+import com.example.dclassicsbook.data.repository.AuthRepositoryProvider;
 import com.example.dclassicsbook.data.repository.BookRepository;
 import com.example.dclassicsbook.data.repository.StoreRepository;
+import com.example.dclassicsbook.data.session.SessionManager;
+import com.example.dclassicsbook.ui.auth.LoginActivity;
 import com.example.dclassicsbook.ui.detail.BookDetailActivity;
 import com.example.dclassicsbook.ui.main.adapter.BookAdapter;
 import com.example.dclassicsbook.ui.main.adapter.StoreAdapter;
@@ -34,9 +39,20 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         applyWindowInsets();
+        setUpGreeting();
         setUpStores();
         setUpBooks();
         setUpBottomNav();
+    }
+
+    // Greet the signed-in user by the name stored in the DB.
+    private void setUpGreeting() {
+        TextView tvUserName = findViewById(R.id.tvUserName);
+        SessionManager session = new SessionManager(this);
+        User user = AuthRepositoryProvider.get(this).getUserByEmail(session.getUserEmail());
+        if (user != null && user.getName() != null && !user.getName().trim().isEmpty()) {
+            tvUserName.setText(user.getName() + "!");
+        }
     }
 
     /**
@@ -80,10 +96,19 @@ public class MainActivity extends AppCompatActivity {
         bottomNav.setActiveItem(BottomNavBar.HOME);
         bottomNav.setOnItemSelectedListener(index -> {
             if (index == BottomNavBar.LOGOUT) {
-                finish();
+                logout();
             }
             // BOOKS / STORES screens are not built yet — they stay on Home for now.
         });
+    }
+
+    // Log out and go back to the login screen.
+    private void logout() {
+        new SessionManager(this).logout();
+        Intent intent = new Intent(this, LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+        finish();
     }
 
     private int dp(int value) {
