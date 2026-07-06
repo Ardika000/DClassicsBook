@@ -20,8 +20,6 @@
         <item name="android:statusBarColor">@color/bg_ivory</item>
         <item name="android:windowLightStatusBar" tools:targetApi="23">true</item>
         <item name="android:navigationBarColor">@color/bg_ivory</item>
-        <!-- Remove the yellow autofill highlight -->
-        <item name="android:autofilledHighlight">@android:color/transparent</item>
     </style>
 
     <style name="Theme.DClassicsBook" parent="Base.Theme.DClassicsBook" />
@@ -48,56 +46,52 @@
         <item name="android:background">@drawable/bg_rounded_input</item>
     </style>
 
-    <!-- Primary button -->
-    <style name="PrimaryButtonStyle">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">52dp</item>
-        <item name="android:gravity">center</item>
-        <item name="android:textColor">@color/bg_ivory</item>
-        <item name="android:textSize">15sp</item>
-        <item name="android:textStyle">bold</item>
-        <item name="fontFamily">@font/poppins</item>
-        <item name="android:background">@drawable/bg_button_primary</item>
-        <item name="android:clickable">true</item>
-        <item name="android:focusable">true</item>
-    </style>
-
-    <!-- Bottom link -->
-    <style name="AuthLinkStyle">
+    <!-- ── Auth (Login / Register) reusable styles ────────────────────────── -->
+    <style name="AuthLabel">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/brown_dark</item>
-        <item name="android:textSize">10sp</item>
+        <item name="android:textSize">16sp</item>
         <item name="fontFamily">@font/poppins</item>
-        <item name="android:padding">8dp</item>
-        <item name="android:clickable">true</item>
-        <item name="android:focusable">true</item>
+        <item name="android:layout_marginBottom">8dp</item>
     </style>
 
-    <!-- Auth input box -->
-    <style name="AuthFieldBox">
+    <!-- Pill container that holds a leading icon + EditText (+ optional eye) -->
+    <style name="AuthInputContainer">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">52dp</item>
+        <item name="android:layout_height">56dp</item>
         <item name="android:orientation">horizontal</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:background">@drawable/bg_auth_input</item>
-        <item name="android:paddingStart">16dp</item>
+        <item name="android:paddingStart">18dp</item>
         <item name="android:paddingEnd">16dp</item>
     </style>
 
-    <!-- Auth input text -->
-    <style name="AuthFieldEditText">
+    <style name="AuthEditText">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_weight">1</item>
         <item name="android:layout_marginStart">12dp</item>
         <item name="android:background">@null</item>
         <item name="android:textColor">@color/brown_dark</item>
-        <item name="android:textColorHint">#8A7765</item>
+        <item name="android:textColorHint">@color/brown_accent</item>
         <item name="android:textSize">14sp</item>
         <item name="fontFamily">@font/poppins</item>
-        <item name="android:gravity">center_vertical</item>
+        <item name="android:maxLines">1</item>
+    </style>
+
+    <style name="AuthButton">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">56dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/bg_ivory</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="fontFamily">@font/poppins</item>
+        <item name="android:background">@drawable/btn_auth</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
     </style>
 
 </resources>

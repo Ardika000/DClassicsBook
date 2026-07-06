@@ -14,7 +14,7 @@ import com.example.dclassicsbook.data.model.Store;
 
 import java.util.List;
 
-public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.StoreViewHolder> {
+public class StoreListAdapter extends RecyclerView.Adapter<StoreListAdapter.VH> {
 
     public interface OnStoreClickListener {
         void onStoreClick(Store store);
@@ -23,21 +23,21 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.StoreViewHol
     private final List<Store> stores;
     private final OnStoreClickListener clickListener;
 
-    public StoreAdapter(List<Store> stores, OnStoreClickListener clickListener) {
+    public StoreListAdapter(List<Store> stores, OnStoreClickListener clickListener) {
         this.stores = stores;
         this.clickListener = clickListener;
     }
 
     @NonNull
     @Override
-    public StoreViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public VH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_store_slide, parent, false);
-        return new StoreViewHolder(view);
+                .inflate(R.layout.item_store_list, parent, false);
+        return new VH(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull StoreViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull VH holder, int position) {
         holder.bind(stores.get(position), clickListener);
     }
 
@@ -46,23 +46,24 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.StoreViewHol
         return stores.size();
     }
 
-    static class StoreViewHolder extends RecyclerView.ViewHolder {
+    static class VH extends RecyclerView.ViewHolder {
         private final ImageView image;
         private final TextView  name;
+        private final TextView  address;
 
-        StoreViewHolder(@NonNull View itemView) {
+        VH(@NonNull View itemView) {
             super(itemView);
-            image = itemView.findViewById(R.id.imgStore);
-            name  = itemView.findViewById(R.id.tvStoreName);
+            image   = itemView.findViewById(R.id.imgStore);
+            name    = itemView.findViewById(R.id.tvStoreName);
+            address = itemView.findViewById(R.id.tvStoreAddress);
         }
 
         void bind(Store store, OnStoreClickListener listener) {
             image.setImageResource(store.getImageResId());
             name.setText(store.getName());
+            address.setText(store.getAddress());
             itemView.setOnClickListener(v -> {
-                if (listener != null) {
-                    listener.onStoreClick(store);
-                }
+                if (listener != null) listener.onStoreClick(store);
             });
         }
     }

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Vertical book card (cover on top, title + author below) used by both the
+    "All-Time Favourite" row and the "Find Yours" grid on the Books page.
+    Root width is match_parent for the grid; BookCardAdapter overrides it with a
+    fixed width when used in the horizontal favourite row.
+-->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:layout_margin="6dp"
+    android:background="@drawable/bg_book_card"
+    android:paddingTop="14dp"
+    android:paddingBottom="12dp"
+    android:paddingStart="8dp"
+    android:paddingEnd="8dp"
+    android:clickable="true"
+    android:focusable="true">
+
+    <ImageView
+        android:id="@+id/imgCover"
+        android:layout_width="74dp"
+        android:layout_height="106dp"
+        android:scaleType="centerCrop"
+        android:background="@drawable/bg_book_cover_rounded"
+        android:clipToOutline="true"
+        android:elevation="4dp"
+        android:contentDescription="@string/cd_book_cover"
+        tools:src="@drawable/the_great_gatsby" />
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:gravity="center"
+        android:textColor="@color/brown_dark"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:fontFamily="@font/poppins"
+        android:maxLines="2"
+        android:ellipsize="end"
+        tools:text="The Great Gatsby" />
+
+    <TextView
+        android:id="@+id/tvAuthor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:gravity="center"
+        android:textColor="@color/brown_accent"
+        android:textSize="9sp"
+        android:fontFamily="@font/poppins"
+        android:maxLines="1"
+        android:ellipsize="end"
+        tools:text="F. Scott Fitzgerald" />
+
+</LinearLayout>

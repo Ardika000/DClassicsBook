@@ -61,8 +61,12 @@
     <color name="search_bg">#EAE5D8</color>
     <!-- Book list card background (warm greige) -->
     <color name="card_book_bg">#E6E0D4</color>
-    <!-- Primary button, pressed -->
+
+    <!-- ── Auth (Login / Register) ──────────────────────────────────────── -->
+    <color name="auth_card_bg">#D9D1C2</color>
+    <color name="auth_input_bg">#EDE8DC</color>
     <color name="brown_pressed">#4A3B2F</color>
-    <!-- Error stroke -->
-    <color name="error_red">#CC4949</color>
+
+    <!-- Books page tab control -->
+    <color name="seg_track_bg">#CFC6B6</color>
 </resources>

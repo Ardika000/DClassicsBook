@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Pill-shaped input field for the auth forms -->
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
-    <corners android:radius="20dp" />
-    <solid android:color="@color/search_bg" />
+    <solid android:color="@color/auth_input_bg" />
+    <corners android:radius="28dp" />
 </shape>

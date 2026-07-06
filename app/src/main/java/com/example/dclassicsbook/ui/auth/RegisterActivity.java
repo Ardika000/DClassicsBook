@@ -2,86 +2,121 @@ package com.example.dclassicsbook.ui.auth;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.CheckBox;
+import android.text.TextUtils;
+import android.util.Patterns;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.Toast;
 
-import androidx.annotation.Nullable;
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 import com.example.dclassicsbook.R;
-import com.example.dclassicsbook.data.repository.AuthResult;
-import com.example.dclassicsbook.util.AuthValidator;
+import com.example.dclassicsbook.data.session.CredentialStore;
 
-public class RegisterActivity extends BaseAuthActivity {
+public class RegisterActivity extends AppCompatActivity {
 
-    private EditText etName;
+    private EditText etUsername;
     private EditText etEmail;
     private EditText etPassword;
-    private EditText etConfirmPassword;
-    private CheckBox cbRememberMe;
+    private EditText etConfirm;
+    private boolean  passwordVisible = false;
+    private boolean  confirmVisible  = false;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
+        EdgeToEdge.enable(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        etName = findViewById(R.id.etName);
-        etEmail = findViewById(R.id.etEmail);
+        applyWindowInsets();
+
+        etUsername = findViewById(R.id.etUsername);
+        etEmail    = findViewById(R.id.etEmail);
         etPassword = findViewById(R.id.etPassword);
-        etConfirmPassword = findViewById(R.id.etConfirmPassword);
-        cbRememberMe = findViewById(R.id.cbRememberMe);
+        etConfirm  = findViewById(R.id.etConfirmPassword);
 
-        bindPasswordToggle(etPassword, findViewById(R.id.ivTogglePassword));
-        bindPasswordToggle(etConfirmPassword, findViewById(R.id.ivToggleConfirmPassword));
+        ImageView togglePass = findViewById(R.id.ivTogglePassword);
+        togglePass.setOnClickListener(v -> passwordVisible =
+                AuthUi.togglePasswordVisibility(etPassword, togglePass, passwordVisible));
 
-        findViewById(R.id.btnRegister).setOnClickListener(v -> handleRegister());
-        findViewById(R.id.tvGoToLogin).setOnClickListener(v -> goToLogin());
+        ImageView toggleConfirm = findViewById(R.id.ivToggleConfirm);
+        toggleConfirm.setOnClickListener(v -> confirmVisible =
+                AuthUi.togglePasswordVisibility(etConfirm, toggleConfirm, confirmVisible));
+
+        findViewById(R.id.btnSignUp).setOnClickListener(v -> attemptRegister());
+        findViewById(R.id.tvGoLogin).setOnClickListener(v -> goToLogin());
     }
 
-    private void handleRegister() {
-        String name = etName.getText().toString().trim();
-        String email = etEmail.getText().toString();
+    private void attemptRegister() {
+        String username = etUsername.getText().toString().trim();
+        String email    = etEmail.getText().toString().trim();
         String password = etPassword.getText().toString();
-        String confirm = etConfirmPassword.getText().toString();
+        String confirm  = etConfirm.getText().toString();
 
-        resetFieldError(etName, getString(R.string.register_hint_name));
-        resetFieldError(etEmail, getString(R.string.auth_hint_email));
-        resetFieldError(etPassword, getString(R.string.auth_hint_password));
-        resetFieldError(etConfirmPassword, getString(R.string.register_hint_confirm_password));
-
-        boolean valid = true;
-        if (name.isEmpty()) {
-            setFieldError(etName, "Please input name");
-            valid = false;
+        if (TextUtils.isEmpty(username)) {
+            etUsername.setError(getString(R.string.err_username_required));
+            etUsername.requestFocus();
+            return;
         }
-        String emailError = AuthValidator.validateEmail(email);
-        if (emailError != null) {
-            setFieldError(etEmail, emailError);
-            valid = false;
+        if (CredentialStore.getInstance().exists(username)) {
+            etUsername.setError(getString(R.string.err_username_taken));
+            etUsername.requestFocus();
+            return;
         }
-        String passwordError = AuthValidator.validatePassword(password);
-        if (passwordError != null) {
-            setFieldError(etPassword, passwordError);
-            valid = false;
+        if (TextUtils.isEmpty(email)) {
+            etEmail.setError(getString(R.string.err_email_required));
+            etEmail.requestFocus();
+            return;
         }
-        String confirmError = AuthValidator.validatePasswordsMatch(password, confirm);
-        if (confirmError != null) {
-            setFieldError(etConfirmPassword, confirmError);
-            valid = false;
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            etEmail.setError(getString(R.string.err_email_invalid));
+            etEmail.requestFocus();
+            return;
         }
-        if (!valid) {
+        if (TextUtils.isEmpty(password)) {
+            etPassword.setError(getString(R.string.err_password_required));
+            etPassword.requestFocus();
+            return;
+        }
+        if (!AuthUi.isAlphanumeric(password)) {
+            etPassword.setError(getString(R.string.err_password_alnum));
+            etPassword.requestFocus();
+            return;
+        }
+        if (TextUtils.isEmpty(confirm)) {
+            etConfirm.setError(getString(R.string.err_confirm_required));
+            etConfirm.requestFocus();
+            return;
+        }
+        if (!password.equals(confirm)) {
+            etConfirm.setError(getString(R.string.err_password_mismatch));
+            etConfirm.requestFocus();
             return;
         }
 
-        AuthResult result = authRepository.register(name, email, password);
-        if (!result.isSuccess()) {
-            showMessage(result.getMessage());
-            return;
-        }
-        goToHome(email, cbRememberMe.isChecked());
+        CredentialStore.getInstance().register(username, password);
+        Toast.makeText(this, R.string.register_success, Toast.LENGTH_SHORT).show();
+        goToLogin();
     }
 
     private void goToLogin() {
-        startActivity(new Intent(this, LoginActivity.class));
         finish();
+    }
+
+    private void applyWindowInsets() {
+        View content = findViewById(R.id.registerContent);
+        final int baseTop    = content.getPaddingTop();
+        final int baseBottom = content.getPaddingBottom();
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.rootRegister), (v, insets) -> {
+            Insets bars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            content.setPadding(content.getPaddingLeft(), baseTop + bars.top,
+                    content.getPaddingRight(), baseBottom + bars.bottom);
+            return insets;
+        });
     }
 }

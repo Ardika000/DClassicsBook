@@ -74,7 +74,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/brown_accent"
             android:textSize="11sp"
-            android:fontFamily="@font/poppins_medium"
+            android:fontFamily="@font/poppins"
             tools:text="Jane Austen   |   1813" />
 
         <View
@@ -88,7 +88,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/brown_dark"
             android:textSize="10sp"
-            android:fontFamily="@font/poppins_medium"
+            android:fontFamily="@font/poppins"
             android:maxLines="1"
             android:layout_marginTop="5dp"
             android:ellipsize="end"

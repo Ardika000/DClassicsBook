@@ -1,210 +1,196 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Register screen -->
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- Register page. -->
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootRegister"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_authentication"
     android:fillViewport="true"
-    android:fitsSystemWindows="true"
-    android:background="@drawable/bg_authentication">
+    android:scrollbars="none"
+    tools:context=".ui.auth.RegisterActivity">
 
     <LinearLayout
+        android:id="@+id/registerContent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingStart="32dp"
-        android:paddingEnd="32dp"
-        android:paddingTop="60dp"
-        android:paddingBottom="40dp">
+        android:gravity="center_horizontal"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:paddingTop="24dp"
+        android:paddingBottom="32dp">
 
-        <!-- Register Card -->
+        <!-- ── Card ───────────────────────────────────────────────────────── -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="@drawable/bg_login_card"
-            android:padding="30dp">
+            android:background="@drawable/bg_auth_card"
+            android:padding="24dp"
+            android:layout_marginTop="16dp">
 
-            <!-- Heading -->
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
+                android:gravity="center"
                 android:text="@string/register_title"
                 android:textColor="@color/brown_dark"
-                android:textSize="40sp"
+                android:textSize="30sp"
                 android:textStyle="bold"
                 android:fontFamily="@font/poppins" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:text="@string/register_subtitle"
-                android:textColor="@color/brown_dark"
-                android:textSize="15sp"
+                android:gravity="center"
+                android:layout_marginTop="2dp"
+                android:text="@string/auth_subtitle"
+                android:textColor="@color/brown_accent"
+                android:textSize="12sp"
                 android:fontFamily="@font/poppins" />
 
-            <!-- Name -->
+            <!-- Username -->
             <TextView
-                style="@style/FormLabelStyle"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="3dp"
-                android:text="@string/register_label_name" />
+                style="@style/AuthLabel"
+                android:layout_marginTop="20dp"
+                android:text="@string/auth_label_username" />
 
-            <LinearLayout style="@style/AuthFieldBox">
-
+            <LinearLayout style="@style/AuthInputContainer">
                 <ImageView
                     android:layout_width="22dp"
                     android:layout_height="22dp"
-                    android:src="@drawable/ic_person"
-                    android:contentDescription="@null" />
-
+                    android:src="@drawable/ic_profile"
+                    android:contentDescription="@string/auth_label_username" />
                 <EditText
-                    android:id="@+id/etName"
-                    style="@style/AuthFieldEditText"
-                    android:autofillHints="name"
-                    android:hint="@string/register_hint_name"
-                    android:inputType="textPersonName" />
+                    android:id="@+id/etUsername"
+                    style="@style/AuthEditText"
+                    android:hint="@string/auth_hint_username"
+                    android:inputType="text" />
             </LinearLayout>
 
             <!-- Email -->
             <TextView
-                style="@style/FormLabelStyle"
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="3dp"
+                style="@style/AuthLabel"
+                android:layout_marginTop="16dp"
                 android:text="@string/auth_label_email" />
 
-            <LinearLayout style="@style/AuthFieldBox">
-
+            <LinearLayout style="@style/AuthInputContainer">
                 <ImageView
                     android:layout_width="22dp"
                     android:layout_height="22dp"
                     android:src="@drawable/ic_email"
-                    android:contentDescription="@null" />
-
+                    android:contentDescription="@string/auth_label_email" />
                 <EditText
                     android:id="@+id/etEmail"
-                    style="@style/AuthFieldEditText"
-                    android:autofillHints="emailAddress"
+                    style="@style/AuthEditText"
                     android:hint="@string/auth_hint_email"
                     android:inputType="textEmailAddress" />
             </LinearLayout>
 
             <!-- Password -->
             <TextView
-                style="@style/FormLabelStyle"
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="3dp"
+                style="@style/AuthLabel"
+                android:layout_marginTop="16dp"
                 android:text="@string/auth_label_password" />
 
-            <LinearLayout style="@style/AuthFieldBox">
-
+            <LinearLayout style="@style/AuthInputContainer">
                 <ImageView
                     android:layout_width="22dp"
                     android:layout_height="22dp"
                     android:src="@drawable/ic_lock"
-                    android:contentDescription="@null" />
-
+                    android:contentDescription="@string/auth_label_password" />
                 <EditText
                     android:id="@+id/etPassword"
-                    style="@style/AuthFieldEditText"
-                    android:autofillHints="password"
+                    style="@style/AuthEditText"
                     android:hint="@string/auth_hint_password"
                     android:inputType="textPassword" />
-
                 <ImageView
                     android:id="@+id/ivTogglePassword"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:layout_marginStart="8dp"
                     android:src="@drawable/ic_eye_off"
+                    android:contentDescription="@string/cd_toggle_password"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
                     android:clickable="true"
-                    android:focusable="true"
-                    android:contentDescription="@string/auth_toggle_password" />
+                    android:focusable="true" />
             </LinearLayout>
 
             <!-- Confirm Password -->
             <TextView
-                style="@style/FormLabelStyle"
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="3dp"
-                android:text="@string/register_label_confirm_password" />
+                style="@style/AuthLabel"
+                android:layout_marginTop="16dp"
+                android:text="@string/auth_label_confirm" />
 
-            <LinearLayout style="@style/AuthFieldBox">
-
+            <LinearLayout style="@style/AuthInputContainer">
                 <ImageView
                     android:layout_width="22dp"
                     android:layout_height="22dp"
                     android:src="@drawable/ic_lock"
-                    android:contentDescription="@null" />
-
+                    android:contentDescription="@string/auth_label_confirm" />
                 <EditText
                     android:id="@+id/etConfirmPassword"
-                    style="@style/AuthFieldEditText"
-                    android:autofillHints="password"
-                    android:hint="@string/register_hint_confirm_password"
+                    style="@style/AuthEditText"
+                    android:hint="@string/auth_hint_confirm"
                     android:inputType="textPassword" />
-
                 <ImageView
-                    android:id="@+id/ivToggleConfirmPassword"
+                    android:id="@+id/ivToggleConfirm"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:layout_marginStart="8dp"
                     android:src="@drawable/ic_eye_off"
+                    android:contentDescription="@string/cd_toggle_password"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
                     android:clickable="true"
-                    android:focusable="true"
-                    android:contentDescription="@string/auth_toggle_password" />
+                    android:focusable="true" />
             </LinearLayout>
 
-            <!-- Remember me-->
+            <!-- Sign Up button -->
+            <TextView
+                android:id="@+id/btnSignUp"
+                style="@style/AuthButton"
+                android:layout_marginTop="24dp"
+                android:text="@string/btn_signup" />
+
+            <!-- Footer link -->
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:layout_marginTop="12dp">
-
-                <CheckBox
-                    android:id="@+id/cbRememberMe"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:minWidth="0dp"
-                    android:scaleX="0.8"
-                    android:scaleY="0.8"
-                    android:buttonTint="@color/brown_dark" />
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="14dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/auth_remember_me"
-                    android:textColor="@color/brown_dark"
-                    android:textSize="10sp"
+                    android:text="@string/register_have_account"
+                    android:textColor="@color/brown_accent"
+                    android:textSize="12sp"
+                    android:layout_marginRight="5dp"
                     android:fontFamily="@font/poppins" />
+
+                <TextView
+                    android:id="@+id/tvGoLogin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/register_signin_link"
+                    android:textColor="@color/brown_dark"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/poppins"
+                    android:clickable="true"
+                    android:focusable="true" />
             </LinearLayout>
-
-            <!-- Submit -->
-            <TextView
-                android:id="@+id/btnRegister"
-                style="@style/PrimaryButtonStyle"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="10dp"
-                android:text="@string/register_button" />
-
-            <!-- Go to login -->
-            <TextView
-                android:id="@+id/tvGoToLogin"
-                style="@style/AuthLinkStyle"
-                android:text="@string/register_have_account" />
-
         </LinearLayout>
 
-        <!-- Logo -->
+        <!-- ── Logo badge ─────────────────────────────────────────────────── -->
         <ImageView
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="30dp"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:layout_marginTop="24dp"
             android:src="@drawable/logo_dclassic"
-            android:contentDescription="@null" />
+            android:scaleType="fitCenter"
+            android:contentDescription="@string/cd_logo" />
+
     </LinearLayout>
 </ScrollView>

@@ -3,6 +3,9 @@ package com.example.dclassicsbook.ui.main;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -12,25 +15,26 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.widget.CompositePageTransformer;
+import androidx.viewpager2.widget.MarginPageTransformer;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.dclassicsbook.R;
-import com.example.dclassicsbook.data.model.User;
-import com.example.dclassicsbook.data.repository.AuthRepositoryProvider;
+import com.example.dclassicsbook.data.model.Store;
 import com.example.dclassicsbook.data.repository.BookRepository;
 import com.example.dclassicsbook.data.repository.StoreRepository;
-import com.example.dclassicsbook.data.session.SessionManager;
+import com.example.dclassicsbook.data.session.UserSession;
 import com.example.dclassicsbook.ui.auth.LoginActivity;
 import com.example.dclassicsbook.ui.detail.BookDetailActivity;
 import com.example.dclassicsbook.ui.main.adapter.BookAdapter;
 import com.example.dclassicsbook.ui.main.adapter.StoreAdapter;
 import com.example.dclassicsbook.ui.widget.BottomNavBar;
 
-/**
- * Home page — greeting header, search bar, "Our Stores" carousel,
- * "Timeless Classic Books" list and a reusable bottom navigation bar.
- * Built to match the Figma design (UX_DClassicalBook).
- */
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
+
+    private ImageView[] dots = new ImageView[0];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,25 +44,11 @@ public class MainActivity extends AppCompatActivity {
 
         applyWindowInsets();
         setUpGreeting();
-        setUpStores();
-        setUpBooks();
+        setUpStoreCarousel();
+        setUpFeaturedBooks();
         setUpBottomNav();
     }
 
-    // Greet the signed-in user by the name stored in the DB.
-    private void setUpGreeting() {
-        TextView tvUserName = findViewById(R.id.tvUserName);
-        SessionManager session = new SessionManager(this);
-        User user = AuthRepositoryProvider.get(this).getUserByEmail(session.getUserEmail());
-        if (user != null && user.getName() != null && !user.getName().trim().isEmpty()) {
-            tvUserName.setText(user.getName() + "!");
-        }
-    }
-
-    /**
-     * targetSdk 35 forces edge-to-edge, so we pad the scrolling content below
-     * the status bar and the nav bar above the gesture/navigation bar.
-     */
     private void applyWindowInsets() {
         View content   = findViewById(R.id.homeContent);
         View bottomNav = findViewById(R.id.bottomNav);
@@ -72,19 +62,85 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void setUpStores() {
-        RecyclerView rvStores = findViewById(R.id.rvStores);
-        rvStores.setLayoutManager(
-                new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        rvStores.setAdapter(new StoreAdapter(StoreRepository.getStores(), store -> {
-            // No Store detail screen yet — hook navigation here when available.
-        }));
+    private void setUpGreeting() {
+        TextView tvUserName = findViewById(R.id.tvUserName);
+        tvUserName.setText(UserSession.getInstance().getUsername() + "!");
     }
 
-    private void setUpBooks() {
+    private void setUpStoreCarousel() {
+        List<Store> stores = StoreRepository.getStores();
+        final int count = stores.size();
+
+        ViewPager2 pager = findViewById(R.id.vpStores);
+        pager.setAdapter(new StoreAdapter(stores, store -> { }));
+
+        CompositePageTransformer transformer = new CompositePageTransformer();
+        transformer.addTransformer(new MarginPageTransformer(dp(12)));
+        transformer.addTransformer((page, position) -> {
+            float closeness = 1f - Math.min(Math.abs(position), 1f);
+            page.setScaleY(0.86f + closeness * 0.14f);
+            page.setAlpha(0.4f + closeness * 0.6f);
+        });
+        pager.setPageTransformer(transformer);
+
+        buildDots(count);
+        updateControls(0, count);
+
+        pager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                updateControls(position, count);
+            }
+        });
+
+        ImageButton btnPrev = findViewById(R.id.btnStorePrev);
+        ImageButton btnNext = findViewById(R.id.btnStoreNext);
+        btnPrev.setOnClickListener(v -> {
+            int current = pager.getCurrentItem();
+            if (current > 0) pager.setCurrentItem(current - 1, true);
+        });
+        btnNext.setOnClickListener(v -> {
+            int current = pager.getCurrentItem();
+            if (current < count - 1) pager.setCurrentItem(current + 1, true);
+        });
+
+        findViewById(R.id.tvViewAllStores).setOnClickListener(v -> {
+            startActivity(new Intent(this, StoresActivity.class));
+            finish();
+        });
+    }
+
+    private void buildDots(int count) {
+        LinearLayout container = findViewById(R.id.storeDots);
+        container.removeAllViews();
+        dots = new ImageView[count];
+        for (int i = 0; i < count; i++) {
+            ImageView dot = new ImageView(this);
+            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            lp.setMargins(dp(4), 0, dp(4), 0);
+            dot.setLayoutParams(lp);
+            dots[i] = dot;
+            container.addView(dot);
+        }
+    }
+
+    private void updateControls(int position, int count) {
+        for (int i = 0; i < dots.length; i++) {
+            dots[i].setImageResource(i == position ? R.drawable.dot_active : R.drawable.dot_inactive);
+        }
+        ImageButton btnPrev = findViewById(R.id.btnStorePrev);
+        ImageButton btnNext = findViewById(R.id.btnStoreNext);
+        btnPrev.setEnabled(position > 0);
+        btnPrev.setAlpha(position > 0 ? 1f : 0.35f);
+        btnNext.setEnabled(position < count - 1);
+        btnNext.setAlpha(position < count - 1 ? 1f : 0.35f);
+    }
+
+    private void setUpFeaturedBooks() {
         RecyclerView rvBooks = findViewById(R.id.rvBooks);
         rvBooks.setLayoutManager(new LinearLayoutManager(this));
-        rvBooks.setAdapter(new BookAdapter(BookRepository.getBooks(), book -> {
+        rvBooks.setAdapter(new BookAdapter(BookRepository.getFeaturedBooks(), book -> {
             Intent intent = new Intent(MainActivity.this, BookDetailActivity.class);
             intent.putExtra("BOOK_DATA", book);
             startActivity(intent);
@@ -95,20 +151,25 @@ public class MainActivity extends AppCompatActivity {
         BottomNavBar bottomNav = findViewById(R.id.bottomNav);
         bottomNav.setActiveItem(BottomNavBar.HOME);
         bottomNav.setOnItemSelectedListener(index -> {
-            if (index == BottomNavBar.LOGOUT) {
-                logout();
+            switch (index) {
+                case BottomNavBar.BOOKS:
+                    startActivity(new Intent(this, BooksActivity.class));
+                    finish();
+                    break;
+                case BottomNavBar.LOGOUT:
+                    Intent intent = new Intent(this, LoginActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                    finish();
+                    break;
+                case BottomNavBar.STORES:
+                    startActivity(new Intent(this, StoresActivity.class));
+                    finish();
+                    break;
+                default:
+                    break;
             }
-            // BOOKS / STORES screens are not built yet — they stay on Home for now.
         });
-    }
-
-    // Log out and go back to the login screen.
-    private void logout() {
-        new SessionManager(this).logout();
-        Intent intent = new Intent(this, LoginActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intent);
-        finish();
     }
 
     private int dp(int value) {

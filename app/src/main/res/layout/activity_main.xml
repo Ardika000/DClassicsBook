@@ -146,18 +146,51 @@
                     android:focusable="true" />
             </LinearLayout>
 
-            <!-- ── Stores carousel ────────────────────────────────────────── -->
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvStores"
+            <!-- ── Stores carousel (ViewPager2 + prev/next + dots) ────────── -->
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="14dp"
-                android:paddingStart="20dp"
-                android:paddingEnd="6dp"
-                android:clipToPadding="false"
-                android:scrollbars="none"
-                tools:listitem="@layout/item_store_card"
-                tools:orientation="horizontal" />
+                android:layout_marginTop="14dp">
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/vpStores"
+                    android:layout_width="match_parent"
+                    android:layout_height="190dp"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:clipToPadding="false" />
+
+                <ImageButton
+                    android:id="@+id/btnStorePrev"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_gravity="start|center_vertical"
+                    android:layout_marginStart="24dp"
+                    android:src="@drawable/ic_chevron_left"
+                    android:background="@drawable/bg_carousel_btn"
+                    android:scaleType="centerInside"
+                    android:contentDescription="@string/cd_prev" />
+
+                <ImageButton
+                    android:id="@+id/btnStoreNext"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_gravity="end|center_vertical"
+                    android:layout_marginEnd="24dp"
+                    android:src="@drawable/ic_chevron_right"
+                    android:background="@drawable/bg_carousel_btn"
+                    android:scaleType="centerInside"
+                    android:contentDescription="@string/cd_next" />
+            </FrameLayout>
+
+            <!-- Carousel page indicator -->
+            <LinearLayout
+                android:id="@+id/storeDots"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:orientation="horizontal"
+                android:layout_marginTop="12dp" />
 
             <!-- ── "Timeless Classic Books" header ────────────────────────── -->
             <TextView

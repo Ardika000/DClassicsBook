@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Stores page (spec module 6): logo, search bar, a repeater list of stores,
+    and the reusable bottom navigation (Stores active).
+-->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootStores"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bg_ivory"
+    tools:context=".ui.main.StoresActivity">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:id="@+id/storesContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="20dp">
+
+            <!-- Logo -->
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/logo_dclassic"
+                android:scaleType="fitCenter"
+                android:contentDescription="@string/cd_logo" />
+
+            <!-- Search bar -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@drawable/bg_search_bar"
+                android:paddingStart="18dp"
+                android:paddingEnd="18dp"
+                android:layout_marginTop="18dp">
+
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:src="@drawable/ic_search"
+                    android:contentDescription="@string/cd_search" />
+
+                <EditText
+                    android:id="@+id/etSearchStores"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="12dp"
+                    android:background="@null"
+                    android:hint="@string/store_search_hint"
+                    android:textColorHint="@color/brown_accent"
+                    android:textColor="@color/brown_dark"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/poppins"
+                    android:inputType="text"
+                    android:imeOptions="actionSearch"
+                    android:maxLines="1" />
+            </LinearLayout>
+
+            <!-- Store list (repeater) -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvStores"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:nestedScrollingEnabled="false"
+                tools:listitem="@layout/item_store_list" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- Reusable bottom navigation (Stores active) -->
+    <com.example.dclassicsbook.ui.widget.BottomNavBar
+        android:id="@+id/bottomNav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>
