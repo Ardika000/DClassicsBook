@@ -17,6 +17,8 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.dclassicsbook.R;
 import com.example.dclassicsbook.data.session.CredentialStore;
+import com.example.dclassicsbook.data.session.UserSession;
+import com.example.dclassicsbook.ui.main.MainActivity;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -100,8 +102,13 @@ public class RegisterActivity extends AppCompatActivity {
         }
 
         CredentialStore.getInstance().register(username, password);
+        UserSession.getInstance().setUsername(username);
         Toast.makeText(this, R.string.register_success, Toast.LENGTH_SHORT).show();
-        goToLogin();
+
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+        finish();
     }
 
     private void goToLogin() {

@@ -57,7 +57,21 @@ public class BooksActivity extends AppCompatActivity {
         tabNonFiction.setOnClickListener(v -> selectTab(false));
 
         setUpBottomNav();
+        setUpFavourite();
         selectTab(true);
+    }
+
+    private void setUpFavourite() {
+        List<Book> favourite = new ArrayList<>();
+        addTop(favourite, BookRepository.getFictionBooks(), 3);
+        addTop(favourite, BookRepository.getNonFictionBooks(), 3);
+        rvFavourite.setAdapter(new BookCardAdapter(favourite, this::openDetail, FAVOURITE_WIDTH_DP));
+    }
+
+    private void addTop(List<Book> target, List<Book> source, int count) {
+        for (int i = 0; i < Math.min(count, source.size()); i++) {
+            target.add(source.get(i));
+        }
     }
 
     private void selectTab(boolean fiction) {
@@ -68,12 +82,10 @@ public class BooksActivity extends AppCompatActivity {
                 : BookRepository.getNonFictionBooks();
 
         int favCount = Math.min(3, category.size());
-        List<Book> favourite = new ArrayList<>(category.subList(0, favCount));
         List<Book> grid = category.size() > favCount
                 ? new ArrayList<>(category.subList(favCount, category.size()))
                 : new ArrayList<>(category);
 
-        rvFavourite.setAdapter(new BookCardAdapter(favourite, this::openDetail, FAVOURITE_WIDTH_DP));
         rvGrid.setAdapter(new BookCardAdapter(grid, this::openDetail, 0));
     }
 
