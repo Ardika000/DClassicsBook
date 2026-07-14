@@ -1,6 +1,5 @@
 package com.example.dclassicsbook.ui.main;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -14,7 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dclassicsbook.R;
 import com.example.dclassicsbook.data.repository.StoreRepository;
-import com.example.dclassicsbook.ui.auth.LoginActivity;
+import com.example.dclassicsbook.ui.common.LogoutDialog;
+import com.example.dclassicsbook.ui.common.TabTransition;
 import com.example.dclassicsbook.ui.main.adapter.StoreListAdapter;
 import com.example.dclassicsbook.ui.widget.BottomNavBar;
 
@@ -24,6 +24,7 @@ public class StoresActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         EdgeToEdge.enable(this);
         super.onCreate(savedInstanceState);
+        TabTransition.apply(this);
         setContentView(R.layout.activity_stores);
 
         applyWindowInsets();
@@ -43,18 +44,13 @@ public class StoresActivity extends AppCompatActivity {
         bottomNav.setOnItemSelectedListener(index -> {
             switch (index) {
                 case BottomNavBar.HOME:
-                    startActivity(new Intent(this, MainActivity.class));
-                    finish();
+                    TabTransition.switchTo(this, MainActivity.class);
                     break;
                 case BottomNavBar.BOOKS:
-                    startActivity(new Intent(this, BooksActivity.class));
-                    finish();
+                    TabTransition.switchTo(this, BooksActivity.class);
                     break;
                 case BottomNavBar.LOGOUT:
-                    Intent login = new Intent(this, LoginActivity.class);
-                    login.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(login);
-                    finish();
+                    LogoutDialog.show(this);
                     break;
                 default:
                     break;

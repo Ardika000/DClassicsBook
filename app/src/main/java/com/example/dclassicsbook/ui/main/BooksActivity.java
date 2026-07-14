@@ -20,7 +20,8 @@ import com.example.dclassicsbook.data.model.Book;
 import com.example.dclassicsbook.data.repository.BookRepository;
 import com.example.dclassicsbook.ui.detail.BookDetailActivity;
 import com.example.dclassicsbook.ui.main.adapter.BookCardAdapter;
-import com.example.dclassicsbook.ui.auth.LoginActivity;
+import com.example.dclassicsbook.ui.common.LogoutDialog;
+import com.example.dclassicsbook.ui.common.TabTransition;
 import com.example.dclassicsbook.ui.widget.BottomNavBar;
 
 import java.util.ArrayList;
@@ -40,6 +41,7 @@ public class BooksActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         EdgeToEdge.enable(this);
         super.onCreate(savedInstanceState);
+        TabTransition.apply(this);
         setContentView(R.layout.activity_books);
 
         applyWindowInsets();
@@ -110,18 +112,13 @@ public class BooksActivity extends AppCompatActivity {
         bottomNav.setOnItemSelectedListener(index -> {
             switch (index) {
                 case BottomNavBar.HOME:
-                    startActivity(new Intent(this, MainActivity.class));
-                    finish();
+                    TabTransition.switchTo(this, MainActivity.class);
                     break;
                 case BottomNavBar.LOGOUT:
-                    Intent login = new Intent(this, LoginActivity.class);
-                    login.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(login);
-                    finish();
+                    LogoutDialog.show(this);
                     break;
                 case BottomNavBar.STORES:
-                    startActivity(new Intent(this, StoresActivity.class));
-                    finish();
+                    TabTransition.switchTo(this, StoresActivity.class);
                     break;
                 default:
                     break;

@@ -24,7 +24,8 @@ import com.example.dclassicsbook.data.model.Store;
 import com.example.dclassicsbook.data.repository.BookRepository;
 import com.example.dclassicsbook.data.repository.StoreRepository;
 import com.example.dclassicsbook.data.session.UserSession;
-import com.example.dclassicsbook.ui.auth.LoginActivity;
+import com.example.dclassicsbook.ui.common.LogoutDialog;
+import com.example.dclassicsbook.ui.common.TabTransition;
 import com.example.dclassicsbook.ui.detail.BookDetailActivity;
 import com.example.dclassicsbook.ui.main.adapter.BookAdapter;
 import com.example.dclassicsbook.ui.main.adapter.StoreAdapter;
@@ -40,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         EdgeToEdge.enable(this);
         super.onCreate(savedInstanceState);
+        TabTransition.apply(this);
         setContentView(R.layout.activity_main);
 
         applyWindowInsets();
@@ -153,18 +155,13 @@ public class MainActivity extends AppCompatActivity {
         bottomNav.setOnItemSelectedListener(index -> {
             switch (index) {
                 case BottomNavBar.BOOKS:
-                    startActivity(new Intent(this, BooksActivity.class));
-                    finish();
+                    TabTransition.switchTo(this, BooksActivity.class);
                     break;
                 case BottomNavBar.LOGOUT:
-                    Intent intent = new Intent(this, LoginActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(intent);
-                    finish();
+                    LogoutDialog.show(this);
                     break;
                 case BottomNavBar.STORES:
-                    startActivity(new Intent(this, StoresActivity.class));
-                    finish();
+                    TabTransition.switchTo(this, StoresActivity.class);
                     break;
                 default:
                     break;
