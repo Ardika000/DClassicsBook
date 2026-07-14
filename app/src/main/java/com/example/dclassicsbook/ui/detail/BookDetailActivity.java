@@ -1,7 +1,6 @@
 package com.example.dclassicsbook.ui.detail;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -12,13 +11,14 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AlertDialog;
+import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.dclassicsbook.R;
 import com.example.dclassicsbook.data.model.Book;
 import com.example.dclassicsbook.ui.main.BooksActivity;
 import com.example.dclassicsbook.ui.main.MainActivity;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 public class BookDetailActivity extends AppCompatActivity {
 
@@ -30,7 +30,7 @@ public class BookDetailActivity extends AppCompatActivity {
         // Get book from intent
         Book book = (Book) getIntent().getSerializableExtra("BOOK_DATA");
         if (book == null) {
-            Toast.makeText(this, "Data buku tidak ditemukan", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.book_not_found, Toast.LENGTH_SHORT).show();
             finish();
             return;
         }
@@ -110,32 +110,34 @@ public class BookDetailActivity extends AppCompatActivity {
 
                 // Validation 1: fields must not be empty
                 if (address.isEmpty() || phone.isEmpty()) {
-                    showAlertDialog("Form Tidak Lengkap", "Address dan Phone Number wajib diisi.", false);
+                    showBookingDialog(R.string.booking_incomplete_title,
+                            R.string.booking_incomplete_message, false);
                     return;
                 }
 
                 // Validation 2: phone must be numeric
                 if (!phone.matches("[0-9]+")) {
-                    showAlertDialog("Format Tidak Valid", "Phone Number hanya boleh berisi angka.", false);
+                    showBookingDialog(R.string.booking_invalid_title,
+                            R.string.booking_invalid_message, false);
                     return;
                 }
 
                 // Validation passed: show confirmation dialog, then redirect
-                showAlertDialog("Pemesanan Berhasil", "A confirmation email has been sent to your email.", true);
+                showBookingDialog(R.string.booking_success_title,
+                        R.string.booking_success_message, true);
             }
         });
     }
 
-    /**
-     * Helper method to show customized AlertDialog with a specific button color.
-     */
-    private void showAlertDialog(String title, String message, boolean isSuccess) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this)
-                .setTitle(title)
-                .setMessage(message);
+    /** Shows a booking dialog styled like the shared logout confirmation popup. */
+    private void showBookingDialog(@StringRes int title, @StringRes int message, boolean isSuccess) {
+        MaterialAlertDialogBuilder builder =
+                new MaterialAlertDialogBuilder(this, R.style.ThemeOverlay_DClassicsBook_Dialog)
+                        .setTitle(title)
+                        .setMessage(message);
 
         if (isSuccess) {
-            builder.setPositiveButton("OK", (dialog, which) -> {
+            builder.setPositiveButton(R.string.booking_dialog_ok, (dialog, which) -> {
                 // Reset form
                 LinearLayout bookingForm = findViewById(R.id.bookingForm);
                 TextView btnAddToCart = findViewById(R.id.btnAddToCart);
@@ -157,11 +159,9 @@ public class BookDetailActivity extends AppCompatActivity {
             });
             builder.setCancelable(false);
         } else {
-            builder.setPositiveButton("OK", null);
+            builder.setPositiveButton(R.string.booking_dialog_ok, null);
         }
 
-        AlertDialog dialog = builder.create();
-        dialog.show();
-        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#B49D7D"));
+        builder.show();
     }
 }

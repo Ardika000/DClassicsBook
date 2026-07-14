@@ -94,7 +94,7 @@
         <item name="android:focusable">true</item>
     </style>
 
-    <!-- ── Confirmation dialog (logout) ───────────────────────────────────── -->
+    <!-- ── Shared dialog look (logout confirmation, booking) ──────────────── -->
     <style name="ThemeOverlay.DClassicsBook.Dialog" parent="ThemeOverlay.Material3.MaterialAlertDialog">
         <item name="colorSurface">@color/auth_card_bg</item>
         <item name="colorOnSurface">@color/brown_dark</item>
@@ -137,6 +137,12 @@
 
     <style name="Widget.DClassicsBook.DialogButton.Positive">
         <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- ── Profile dropdown (anchored popup, no background dim) ───────────── -->
+    <style name="Animation.DClassicsBook.Popup" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@anim/tab_fade_in</item>
+        <item name="android:windowExitAnimation">@anim/tab_fade_out</item>
     </style>
 
 </resources>

@@ -5,6 +5,7 @@ public final class UserSession {
     private static final UserSession INSTANCE = new UserSession();
 
     private String username = "Joy Rochelle";
+    private String email    = "joy.rochelle@dclassics.com";
 
     private UserSession() { }
 
@@ -16,7 +17,13 @@ public final class UserSession {
         return username;
     }
 
-    public void setUsername(String username) {
+    public String getEmail() {
+        return email;
+    }
+
+    /** Records who is signed in; both values are shown in the profile popup. */
+    public void setAccount(String username, String email) {
         this.username = username;
+        this.email = email;
     }
 }

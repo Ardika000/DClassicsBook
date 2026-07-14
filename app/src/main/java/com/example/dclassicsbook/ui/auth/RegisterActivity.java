@@ -101,8 +101,8 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
-        CredentialStore.getInstance().register(username, password);
-        UserSession.getInstance().setUsername(username);
+        CredentialStore.getInstance().register(username, password, email);
+        UserSession.getInstance().setAccount(username, email);
         Toast.makeText(this, R.string.register_success, Toast.LENGTH_SHORT).show();
 
         Intent intent = new Intent(this, MainActivity.class);

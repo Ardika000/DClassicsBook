@@ -25,6 +25,7 @@ import com.example.dclassicsbook.data.repository.BookRepository;
 import com.example.dclassicsbook.data.repository.StoreRepository;
 import com.example.dclassicsbook.data.session.UserSession;
 import com.example.dclassicsbook.ui.common.LogoutDialog;
+import com.example.dclassicsbook.ui.common.ProfileDropdown;
 import com.example.dclassicsbook.ui.common.TabTransition;
 import com.example.dclassicsbook.ui.detail.BookDetailActivity;
 import com.example.dclassicsbook.ui.main.adapter.BookAdapter;
@@ -67,6 +68,8 @@ public class MainActivity extends AppCompatActivity {
     private void setUpGreeting() {
         TextView tvUserName = findViewById(R.id.tvUserName);
         tvUserName.setText(UserSession.getInstance().getUsername() + "!");
+
+        findViewById(R.id.imgAvatar).setOnClickListener(ProfileDropdown::showUnder);
     }
 
     private void setUpStoreCarousel() {
