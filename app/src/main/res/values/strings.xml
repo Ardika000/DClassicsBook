@@ -33,6 +33,12 @@
     <string name="nav_stores">Stores</string>
     <string name="nav_logout">Log Out</string>
 
+    <!-- Logout confirmation -->
+    <string name="logout_dialog_title">Log Out</string>
+    <string name="logout_dialog_message">Are you sure you want to log out of your account?</string>
+    <string name="logout_dialog_confirm">Log Out</string>
+    <string name="logout_dialog_cancel">Cancel</string>
+
     <!-- Content descriptions -->
     <string name="cd_avatar">Profile picture</string>
     <string name="cd_search">Search</string>
