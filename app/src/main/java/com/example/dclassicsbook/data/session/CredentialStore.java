@@ -7,9 +7,15 @@ public final class CredentialStore {
 
     private static final CredentialStore INSTANCE = new CredentialStore();
 
+    /** Demo account, always available so the app can be logged into without registering first. */
+    private static final String DEMO_USERNAME = "User";
+    private static final String DEMO_PASSWORD = "User123";
+
     private final Map<String, String> users = new HashMap<>();
 
-    private CredentialStore() { }
+    private CredentialStore() {
+        users.put(DEMO_USERNAME, DEMO_PASSWORD);
+    }
 
     public static CredentialStore getInstance() {
         return INSTANCE;
