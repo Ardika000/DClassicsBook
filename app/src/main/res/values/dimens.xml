@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="screen_min_height">700dp</dimen>
+
+    <!-- Radius sudut atas bottom navigation bar -->
+    <dimen name="nav_bar_corner_radius">24dp</dimen>
 </resources>

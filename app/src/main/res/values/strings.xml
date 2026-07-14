@@ -33,6 +33,27 @@
     <string name="nav_stores">Stores</string>
     <string name="nav_logout">Log Out</string>
 
+    <!-- Logout confirmation -->
+    <string name="logout_dialog_title">Log Out</string>
+    <string name="logout_dialog_message">Are you sure you want to log out of your account?</string>
+    <string name="logout_dialog_confirm">Log Out</string>
+    <string name="logout_dialog_cancel">Cancel</string>
+
+    <!-- Profile dropdown -->
+    <string name="profile_popup_title">Account Details</string>
+    <string name="profile_label_username">Username</string>
+    <string name="profile_label_email">Email</string>
+
+    <!-- Book detail / booking -->
+    <string name="book_not_found">Book data not found</string>
+    <string name="booking_dialog_ok">OK</string>
+    <string name="booking_incomplete_title">Incomplete Form</string>
+    <string name="booking_incomplete_message">Address and Phone Number must be filled.</string>
+    <string name="booking_invalid_title">Invalid Format</string>
+    <string name="booking_invalid_message">Phone Number may only contain digits.</string>
+    <string name="booking_success_title">Order Confirmed</string>
+    <string name="booking_success_message">A confirmation email has been sent to your email.</string>
+
     <!-- Content descriptions -->
     <string name="cd_avatar">Profile picture</string>
     <string name="cd_search">Search</string>

@@ -48,7 +48,7 @@ public class BottomNavBar extends LinearLayout {
 
     private void init(Context context) {
         setOrientation(HORIZONTAL);
-        setBackgroundColor(ContextCompat.getColor(context, R.color.menu_bar_bg));
+        setBackgroundResource(R.drawable.bg_bottom_nav);
 
         LayoutInflater.from(context).inflate(R.layout.view_bottom_nav, this, true);
 

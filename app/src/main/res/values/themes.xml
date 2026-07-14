@@ -94,4 +94,55 @@
         <item name="android:focusable">true</item>
     </style>
 
+    <!-- ── Shared dialog look (logout confirmation, booking) ──────────────── -->
+    <style name="ThemeOverlay.DClassicsBook.Dialog" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+        <item name="colorSurface">@color/auth_card_bg</item>
+        <item name="colorOnSurface">@color/brown_dark</item>
+        <item name="colorPrimary">@color/brown_dark</item>
+        <item name="alertDialogStyle">@style/MaterialAlertDialog.DClassicsBook</item>
+        <item name="materialAlertDialogTitleTextStyle">@style/MaterialAlertDialog.DClassicsBook.Title</item>
+        <item name="materialAlertDialogBodyTextStyle">@style/MaterialAlertDialog.DClassicsBook.Body</item>
+        <item name="buttonBarPositiveButtonStyle">@style/Widget.DClassicsBook.DialogButton.Positive</item>
+        <item name="buttonBarNegativeButtonStyle">@style/Widget.DClassicsBook.DialogButton</item>
+    </style>
+
+    <style name="MaterialAlertDialog.DClassicsBook" parent="MaterialAlertDialog.Material3">
+        <item name="backgroundTint">@color/auth_card_bg</item>
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearance.DClassicsBook.Dialog</item>
+    </style>
+
+    <style name="ShapeAppearance.DClassicsBook.Dialog" parent="ShapeAppearance.Material3.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">20dp</item>
+    </style>
+
+    <style name="MaterialAlertDialog.DClassicsBook.Title" parent="MaterialAlertDialog.Material3.Title.Text">
+        <item name="android:textColor">@color/brown_dark</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="fontFamily">@font/poppins</item>
+    </style>
+
+    <style name="MaterialAlertDialog.DClassicsBook.Body" parent="MaterialAlertDialog.Material3.Body.Text">
+        <item name="android:textColor">@color/brown_darkest</item>
+        <item name="android:textSize">14sp</item>
+        <item name="fontFamily">@font/poppins</item>
+    </style>
+
+    <style name="Widget.DClassicsBook.DialogButton" parent="Widget.Material3.Button.TextButton.Dialog">
+        <item name="android:textColor">@color/brown_dark</item>
+        <item name="android:textSize">14sp</item>
+        <item name="fontFamily">@font/poppins</item>
+    </style>
+
+    <style name="Widget.DClassicsBook.DialogButton.Positive">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- ── Profile dropdown (anchored popup, no background dim) ───────────── -->
+    <style name="Animation.DClassicsBook.Popup" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@anim/tab_fade_in</item>
+        <item name="android:windowExitAnimation">@anim/tab_fade_out</item>
+    </style>
+
 </resources>

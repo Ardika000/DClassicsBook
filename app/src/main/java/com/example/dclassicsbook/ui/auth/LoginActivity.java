@@ -77,7 +77,8 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-        UserSession.getInstance().setUsername(username);
+        UserSession.getInstance().setAccount(
+                username, CredentialStore.getInstance().getEmail(username));
         Intent intent = new Intent(this, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
